@@ -1,7 +1,8 @@
-from bottle import route, run, template, get, request, hook, response
+from bottle import route, run, template, get, request, hook, response, static_file
 
 import pymongo
 
+count = 0
 #mongodb connection
 connection_string = 'mongodb://localhost'
 
@@ -23,7 +24,7 @@ def login():
 
 #show the query page
 @route('/wizard')
-def wizar():
+def wizard():
 	tables = ['table1', 'table2'];
 	columns = {
 		'table1': ['column11', 'column12', 'column13', 'column14', 'column15', 'column16'],
@@ -31,8 +32,6 @@ def wizar():
 	};
 
 	return template("query", tables=tables, columns=columns);
-
-
 
 @get('/query')
 def query():
@@ -49,6 +48,24 @@ def query():
     db = connection.cheetah
     users = db.users
     users.insert({'name':username})
+
+@route('/progress')
+def progress():
+	return template('index')
+
+@get('/fetch')
+def fetch():
+    global count
+    count = count + 1
+    return str(count)
+
+@route('/result')
+def result():
+    return template('visualize')
+
+@route('/data')
+def data():
+    return static_file('data4.tsv', root='./')
 
 @hook('after_request')
 def enable_cors():
