@@ -68,23 +68,6 @@ var text = meter.append("text")
 //       meter.transition().delay(250).attr("transform", "scale(0)");
 //     });
 
-// var i = d3.interpolate(progress, 0.5);
-// d3.transition().tween("progress", function() {
-//   return function(t) {
-//     progress = i(t);
-//     foreground.attr("d", arc.endAngle(twoPi * progress));
-//     text.text(formatPercent(progress));
-//   };
-// });
-// var i = d3.interpolate(progress, 0.1);
-// d3.transition().tween("progress", function() {
-//   return function(t) {
-//     progress = i(t);
-//     foreground.attr("d", arc.endAngle(twoPi * progress));
-//     text.text(formatPercent(progress));
-//   };
-// });
-
 setInterval(function(){
   d3.json('http://localhost:8080/?'+Math.random(), function(data){
     var pro = parseInt(data);
