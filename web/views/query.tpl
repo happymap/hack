@@ -80,8 +80,7 @@ body{
 	height: 20px;
 	font-size: 20px;
 	font-weight: bold;
-	background: blue;
-	color: white;
+	color: #9400;
 	float: left;
 	text-align: center;
 }
@@ -97,6 +96,16 @@ body{
 	font-weight: bolder;
 }
 
+#operation {
+	text-align: center;
+    cursor: hand;
+	width: 100px;
+	height: 100px;
+	float: left;
+	border: 1px #000 dashed;
+	margin: 30px;
+	vertical-align: middle;
+}
 
 
 </style>
@@ -108,6 +117,7 @@ $(function() {
      var fields = [];
      var tables = [];
      var selected_tables = [];
+     var sum_operations = [];
 
      $('#sqls1 #sql4').click(function(){
      	$("#that").css('display', 'block');
@@ -151,25 +161,47 @@ $(function() {
      $('#this #tile').click(function(){  
          var field = $.trim($(this).text()); 	
          $(this).css('background-color', '#fff000');
+         $("#operation").css('background-color', '#fff');
+         $(this).find('#operation').css('display', 'block');
          fields.push(field);
          console.log(field);
+         $('.sum').css('display', 'block');
+         $('.count').css('display', 'block');
+         $('.average').css('display', 'block');
      });
 
      $('#thisok').click(function(){
      	$("html, body").animate({ scrollTop: $('#sqls3').position().top}, 200);
      	if(fields && fields.length !== 0){
-     		var this_str = "";
      		var i;
-     		for(i=0; i<fields.length;i++){
-     			this_str += fields[i];
-     			if(i !== fields.length -1){
-     				this_str += ',';
-     			}
-     		}
-     		$('#sqls1 #sql2').html(this_str);
-     		$('#sqls2 #sql2').html(this_str);
-     		$('#sqls3 #sql2').html(this_str);
+     		var my_str = '';
+     		for(i=0;i<fields.length;i++){
+     		    var myfield = fields[i];
+     		    var k;
+     		    for(k=0; k<sum_operations.length;k++){
+
+     			    if(sum_operations[k] === myfield){
+     				    myfield = 'sum(' + fields[i] + ')';
+     				    break;
+     			    }
+     		    }
+     		    my_str += ' '+myfield;
+     		    if(i !== fields.length -1){
+     			    my_str += ','
+     		    }
+     	    }
+     		console.log(1, sum_operations);
+     		$('#sqls1 #sql2').html(my_str);
+     		$('#sqls2 #sql2').html(my_str);
+     		$('#sqls3 #sql2').html(my_str);
      	}
+     });
+
+     $(".sum").click(function(){
+     	    var field = fields[fields.length-1];
+     		sum_operations.push(field);
+     		$(this).css('background-color', '#fff222');
+     		console.log('sum('+field+')');
      });
 
 
@@ -177,7 +209,16 @@ $(function() {
      	var query = "select ";
      	var i;
      	for(i = 0; i<fields.length; i++){
-     		query += ' '+fields[i];
+     		var myfield = fields[i];
+     		var k;
+     		for(k=0; k<sum_operations.length;k++){
+
+     			if(sum_operations[k] === myfield){
+     				myfield = 'sum(' + fields[i] + ')';
+     				break;
+     			}
+     		}
+     		query += ' '+myfield;
      		if(i !== fields.length -1){
      			query += ','
      		}
@@ -190,6 +231,12 @@ $(function() {
      			query += ','
      		}
      	}
+
+     	var startdate = $('input#startdate').val();
+     	var enddate = $('input#enddate').val();
+
+     	query += ' dates ['+startdate+','+enddate+']';
+
      	var marketId = 1;
      	var username = "yying";
      	//call submit url
@@ -249,6 +296,17 @@ $(function() {
 % end
 		<div id="thisok"  style="display:none">next step</div>
 	</div>
+
+	<div id="operation" class="sum" style="display:none">
+		sum
+	</div>
+	<div id="operation" class="count" style="display:none">
+		count
+	</div>
+	<div id="operation" class="average" style="display:none">
+		average
+	</div>
+
 </div>
 
 <div id="section3">
@@ -256,7 +314,13 @@ $(function() {
 		<span id="sql1">SELECT</span>
 		<span id="sql2">THIS</span>
 		<span id="sql3">FROM</span>
-		<span id="sql4">THAT</span>  
+		<span id="sql4">THAT</span> 
+		<span id="sql5">DATES</span>
+		[
+		<span id="sql6"><input type="text" name="start_date" size=12 value="start date" maxlength=10 style="font-size:60px;" id="startdate"/></span>
+		,
+		<span id="sql7"><input type="text" name="end_date" size=12 value="end date"  maxlength=10 style="font-size:60px;" id="enddate"/></span>
+		]
 	</div>
 </div>
 
