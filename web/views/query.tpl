@@ -47,7 +47,6 @@ body{
 
 
 #tile, #thisok, #thatok{
-	text-align: center;
     cursor: hand;
 	width: 100px;
 	height: 100px;
@@ -55,6 +54,8 @@ body{
 	border: 1px #000 dashed;
 	margin: 20px;
 	vertical-align: middle;
+	text-align: center;
+	line-height: 100px;
 }
 
 #tile:hover{
@@ -75,12 +76,13 @@ body{
 
 
 #submit{
+	cursor: hand;
 	margin:200px 0 200px 0; 
-	width: 100px;
+	width: 100%;
 	height: 20px;
-	font-size: 20px;
+	font-size: 60px;
 	font-weight: bold;
-	color: #9400;
+	color: #7381ff;
 	float: left;
 	text-align: center;
 }
@@ -92,7 +94,8 @@ body{
 
 
 #thisok, #thatok{
-	font-size: 30px;
+	border-radius: 20px;
+	font-size: 20px;
 	font-weight: bolder;
 }
 
@@ -126,7 +129,7 @@ $(function() {
 
      $('#that #tile').click(function(){  
          var table = $.trim($(this).text()); 	
-         $(this).css('background-color', '#fff000');
+         $(this).css('background-color', '#FF6633');
          tables.push(table);
          console.log(tables);
          selected_tables.push(table);
@@ -160,7 +163,7 @@ $(function() {
 
      $('#this #tile').click(function(){  
          var field = $.trim($(this).text()); 	
-         $(this).css('background-color', '#fff000');
+         $(this).css('background-color', '#FF6633');
          $("#operation").css('background-color', '#fff');
          $(this).find('#operation').css('display', 'block');
          fields.push(field);
@@ -232,8 +235,20 @@ $(function() {
      		}
      	}
 
+
+     	regEx = '^[0-9]{4}-(((0[13578]|(10|12))-(0[1-9]|[1-2][0-9]|3[0-1]))|(02-(0[1-9]|[1-2][0-9]))|((0[469]|11)-(0[1-9]|[1-2][0-9]|30)))$';
      	var startdate = $('input#startdate').val();
      	var enddate = $('input#enddate').val();
+
+
+
+     	if(!startdate || !enddate){
+     		alert('please enter startdate or enddate');
+     		return;
+     	} else if(!startdate.match(regEx) || !enddate.match(regEx)){
+     		alert('dates format not correct');
+     		return;
+     	}
 
      	query += ' dates ['+startdate+','+enddate+']';
 
@@ -317,16 +332,16 @@ $(function() {
 		<span id="sql4">THAT</span> 
 		<span id="sql5">DATES</span>
 		[
-		<span id="sql6"><input type="text" name="start_date" size=12 value="start date" maxlength=10 style="font-size:60px;" id="startdate"/></span>
+		<span id="sql6"><input type="text" name="start_date" size=12 value="start date" maxlength=10 style="font-size:60px; border:#FF6633;" id="startdate"/></span>
 		,
-		<span id="sql7"><input type="text" name="end_date" size=12 value="end date"  maxlength=10 style="font-size:60px;" id="enddate"/></span>
+		<span id="sql7"><input type="text" name="end_date" size=12 value="end date"  maxlength=10 style="font-size:60px; border:#FF6633;" id="enddate"/></span>
 		]
 	</div>
+	<div id="submit">submit</div>
 </div>
 
 
 
-	<div id="submit">submit</div>
 
 
 

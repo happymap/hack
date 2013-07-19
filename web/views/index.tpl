@@ -2,6 +2,10 @@
 <meta charset="utf-8">
 <style>
 
+body{
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
 .progress-meter .background {
   fill: #ccc;
 }
@@ -16,8 +20,16 @@
   font-weight: bold;
 }
 
+#title{
+  font-size: 30px;
+  float: left;
+  width: auto;
+  font-weight: bolder;
+}
+
 </style>
 <body>
+<div id="title">Cheetah is Running...</div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 

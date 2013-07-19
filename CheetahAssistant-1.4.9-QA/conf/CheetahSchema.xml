@@ -1,0 +1,1622 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Metadata>
+	<CheetahKeyword>
+		<Keyword name="AND" description="" visible="true" />
+		<Keyword name="SQRT" description="" visible="true" />
+		<Keyword name="AS" description="" visible="true" />
+		<Keyword name="ASC" description="" visible="true" />
+		<Keyword name="BY" description="" visible="true" />
+		<Keyword name="CASE" description="" visible="true" />
+		<Keyword name="CASTLONG" description="" visible="true" />
+		<Keyword name="TO_DATE" description="" visible="true" />
+		<Keyword name="TO_EPOCH_TIME" description="" visible="true" />
+		<Keyword name="TO_MONTH" description="" visible="true" />
+		<Keyword name="TO_DATE_2" description="" visible="true" />
+		<Keyword name="TO_DAY_OF_WEEK" description="" visible="true" />
+		<Keyword name="TO_DATE_KEY" description="" visible="true" />
+		<Keyword name="TO_HOUR" description="" visible="true" />
+		<Keyword name="TO_TIME" description="" visible="true" />
+		<Keyword name="COUNT" description="" visible="true" />
+		<Keyword name="LIST_COUNT"
+			description="list_count(profiles.beacons.ts, to_epoch_time('2011_08_01'), to_epoch_time('2011_09_01')) returns the count of beacon fires in August."
+			visible="true" />
+		<Keyword name="CREATE" description="" visible="true" />
+		<Keyword name="DATES" description="" visible="true" />
+		<Keyword name="DESC" description="" visible="true" />
+		<Keyword name="DESCRIBE" description="" visible="true" />
+		<Keyword name="DISTINCT" description="" visible="true" />
+		<Keyword name="DROP" description="" visible="true" />
+		<Keyword name="ELSE" description="" visible="true" />
+		<Keyword name="END" description="" visible="true" />
+		<Keyword name="FROM" description="" visible="true" />
+		<Keyword name="IN" description="" visible="true" />
+		<Keyword name="INFILE" description="" visible="true" />
+		<Keyword name="MAX" description="" visible="true" />
+		<Keyword name="LIST_MAX_RANGE"
+			description="list_max_range(profiles.beacons.ts, profiles.beacons.ts, to_epoch_time('2011_08_01'), to_epoch_time('2011_09_01'))"
+			visible="true" />
+		<Keyword name="LIST_MIN_RANGE"
+			description="list_min_range(profiles.impressions.ts, profiles.impressions.ts, to_epoch_time('2011_08_01'), to_epoch_time('2011_09_01'))"
+			visible="true" />
+		<Keyword name="LIST_SUM_RANGE"
+			description="list_sum_range(profiles.impressions.cost, profiles.impressions.ts, to_epoch_time('2011_08_01'), to_epoch_time('2011_09_01'))"
+			visible="true" />
+		<Keyword name="LIST_MAX"
+			description="list_max(profiles.beacons.ts) returns the max timestamp of the beacon fires in the targeted date range (in DATES clause)."
+			visible="true" />
+		<Keyword name="MIN" description="" visible="true" />
+		<Keyword name="LIST_MIN"
+			description="list_min(profiles.beacons.ts) returns the min timestamp of the beacon fires in the targeted date range (in DATES clause)."
+			visible="true" />
+		<Keyword name="HAVING" description="" visible="true" />
+		<Keyword name="LIKE" description="" visible="true" />
+		<Keyword name="LIST_HAS"
+			description="list_has(profiles.beacons.beacon_id, 123, 234) returns true if user has any beacon fires with id being either (123 or 234) in the targeted date range (in DATES clause)."
+			visible="true" />
+		<Keyword name="LIST_SUM"
+			description="list_sum(profiles.impressions.cost) returns the sum of impression cost in the targeted date range (in DATES clause)."
+			visible="true" />
+		<Keyword name="NOT" description="" visible="true" />
+		<Keyword name="OR" description="" visible="true" />
+		<Keyword name="ORDER" description="" visible="true" />
+		<Keyword name="SELECT" description="" visible="true" />
+		<Keyword name="STRLEN" description="" visible="true" />
+		<Keyword name="SUM" description="" visible="true" />
+		<Keyword name="TABLE" description="" visible="true" />
+		<Keyword name="THEN" description="" visible="true" />
+		<Keyword name="WHEN" description="" visible="true" />
+		<Keyword name="WHERE" description="" visible="true" />
+		<Keyword name="TO_CURRENCY" description="" visible="true" />
+		<Keyword name="CONCAT" description="" visible="true" />
+		<Keyword name="FOR_MARKET_"
+			description="Turn Datamine user only - choose the market for ICA relational query or the AUP for profile query"
+			visible="true" />
+		<Keyword name="SAMPLE"
+			description="Cheetah Analytics only - apply the query to a sample of users (on AUP query) or events (on ICA)"
+			visible="true" />
+		<Keyword name="TEST"
+			description="Cheetah Analytics only - test running your query"
+			visible="true" />
+		<Keyword name="LIMIT"
+			description="Cheetah Analytics only - work with ORDER BY to get 'top k' results"
+			visible="true" />
+	</CheetahKeyword>
+	<CheetahProfile>
+		<Table name="dmp" depends="" description="" visible="true">
+			<Column name="user_id" conditions="first" />
+			<Column name="creation_ts" conditions="first" />
+			<Column name="last_modified_ts" conditions="first" />
+			<Column name="browser_type" conditions="first" />
+			<Column name="ip_address" conditions="first" />
+			<Column name="ip" conditions="first" />
+			<Column name="screen_resolution" conditions="first" />
+			<Column name="country" conditions="first" />
+			<Column name="dma" conditions="first" />
+			<Column name="region" conditions="first" />
+			<Column name="city" conditions="first" />
+			<Column name="postal_code" conditions="first" />
+			<Column name="user_agent_fp" conditions="first" />
+			<Column name="browser_version" conditions="first" />
+			<Column name="os_version" conditions="first" />
+			<Column name="os_type" conditions="first" />
+			<Column name="ts" conditions="" />
+		</Table>
+		<Table name="dmp.data" depends="dmp" description=""
+			example="select data_provider_name, contract_name, count(distinct user_id) cat_UU From dmp.data Dates [2012_04_01, 2012_04_25] where data_provider_id in (18130977, 3310169) order by category_name"
+			visible="true">
+			<Column name="contract_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="contract_name" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="data_provider_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="data_provider_name" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="rate_type" conditions=""
+				default="ImpressionReader.intNegativeOne" />
+			<Column name="advertiser_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="data_cost" conditions=""
+				default="ImpressionReader.floatZero" />
+			<Column name="data_ingestion_type_id" conditions="Source of data, e.g., file"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="category" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="category_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="category_name" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="category_fullpath_name" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="turn_category_id" conditions=""
+				default="ImpressionReader.intNegativeOne" />
+			<Column name="keyword" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="cid" conditions="" default="ImpressionReader.unknownString" />
+			<Column name="shopping_cart_value" conditions=""
+				default="ImpressionReader.floatZero" />
+			<Column name="revenue_share_percent" conditions=""
+				default="ImpressionReader.floatZero" />
+			<Column name="market_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="market_name" conditions=""
+				default="ImpressionReader.unknownString" />
+			<Column name="data_ingestion_type_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+		</Table>
+		<Table name="dmp.impressions" depends="dmp" description=""
+			visible="true">
+			<!-- Set only once per user -->
+			<Column name="impression" conditions="first"
+				default="ImpressionReader.intZero" />
+			<Column name="click" conditions="first" default="ImpressionReader.intZero" />
+			<Column name="action" conditions="first" default="ImpressionReader.intZero" />
+			<Column name="vta" conditions="first" default="ImpressionReader.intZero" />
+			<Column name="cta" conditions="first" default="ImpressionReader.intZero" />
+			<Column name="tap_vta" conditions="first" default="ImpressionReader.intZero" />
+			<Column name="tap_cta" conditions="first" default="ImpressionReader.intZero" />
+			<Column name="tap_action" conditions="first"
+				default="ImpressionReader.intZero" />
+			<Column name="action_ts" conditions="first"
+				default="ImpressionReader.intNegativeOne" />
+			<Column name="order_number" conditions="first"
+				default="ImpressionReader.unknownString" />
+			<Column name="shopping_cart_value" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="engagement_event_id" conditions="first"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="engagement_event_ts" conditions="first"
+				default="ImpressionReader.longNegativeOne" />
+
+			<!-- Used for engagement only -->
+			<Column name="view_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="percent25_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="percent50_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="percent75_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="complete_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="audio_mute_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="audio_unmute_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="collapse_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="expand_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="pause_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="resume_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="rewind_events" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="social_impression" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="social_click" conditions="first"
+				default="ImpressionReader.longZero" />
+
+			<!-- Shared by all ICAE -->
+			<Column name="impression_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" description="A random number to distinguish the impressions of a user" />
+			<Column name="ts" conditions="initial_rule_contract" />
+			<Column name="media_provider_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="media_provider_name"
+				description="An impression could come from different media providers, like 'Turn'"
+				type="String" conditions="initial_rule_contract" default="ImpressionReader.unknownString" />
+			<Column name="advertiser_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="advertiser_name" conditions="initial_rule_contract"
+				default="ImpressionReader.unknownString" />
+			<Column name="segment_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="segment_name" conditions="initial_rule_contract"
+				default="ImpressionReader.unknownString" />
+			<Column name="ad_experiment_bucket_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="external_data_cost" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<Column name="net_media_cost" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<Column name="dsp_fee" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<!-- Specially for Impression -->
+			<Column name="cost" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<Column name="cogs" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<Column name="margin" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<!-- Media provider's fields -->
+			<Column name="tld" conditions="initial_rule_contract" />
+			<Column name="subdomain" conditions="initial_rule_contract" />
+			<Column name="recipe_id" conditions="initial_rule_contract" />
+			<Column name="bid_price" conditions="initial_rule_contract" />
+			<Column name="bid_type" conditions="initial_rule_contract" />
+			<Column name="mp_market_id" conditions="initial_rule_contract" />
+			<Column name="mp_market_name" conditions="initial_rule_contract"
+				default="ImpressionReader.unknownString" />
+			<Column name="mp_advertiser_id" conditions="initial_rule_contract" />
+			<Column name="mp_advertiser_name" conditions="initial_rule_contract" />
+			<Column name="mp_insertion_order_id" conditions="initial_rule_contract" />
+			<Column name="mp_insertion_order_name" conditions="initial_rule_contract" />
+			<Column name="mp_io_start_date" conditions="initial_rule_contract" />
+			<Column name="mp_io_end_date" conditions="initial_rule_contract" />
+			<Column name="mp_io_current_budget" conditions="initial_rule_contract" />
+			<Column name="mp_io_goal_type" conditions="initial_rule_contract" />
+			<Column name="mp_io_goal_amount" conditions="initial_rule_contract" />
+			<Column name="mp_package_id" conditions="initial_rule_contract" />
+			<Column name="mp_package_name" conditions="initial_rule_contract" />
+			<Column name="mp_package_start_date" conditions="initial_rule_contract" />
+			<Column name="mp_package_end_date" conditions="initial_rule_contract" />
+			<Column name="mp_package_current_budget" conditions="initial_rule_contract" />
+			<Column name="mp_package_goal_type" conditions="initial_rule_contract" />
+			<Column name="mp_package_goal_amount" conditions="initial_rule_contract" />
+			<Column name="mp_line_item_id" conditions="initial_rule_contract" />
+			<Column name="mp_line_item_name" conditions="initial_rule_contract" />
+			<Column name="mp_creative_id" conditions="initial_rule_contract" />
+			<Column name="mp_creative_name" conditions="initial_rule_contract" />
+			<Column name="mp_ad_format_id" conditions="initial_rule_contract" />
+			<Column name="media_channel_id" conditions="initial_rule_contract" />
+			<Column name="media_channel_name" conditions="initial_rule_contract" />
+			<Column name="mp_inventory_source_id" conditions="initial_rule_contract" />
+			<Column name="mp_inventory_source_name" conditions="initial_rule_contract" />
+			<Column name="mp_tpt_category_id" conditions="initial_rule_contract" />
+			<Column name="mp_tpt_category_name" conditions="initial_rule_contract" />
+
+			<Column name="contract_id" conditions="enumRuleNum,enumContract" />
+			<Column name="contract_name" conditions="enumRuleNum,enumContract" />
+			<Column name="rule_num" conditions="enumRuleNum" />
+			<Column name="category" conditions="enumRuleNum" />
+			<Column name="category_id" conditions="enumRuleNum" />
+			<Column name="category_name" conditions="enumRuleNum"
+				default="ImpressionReader.unknownString" />
+			<Column name="keyword" conditions="enumRuleNum" />
+			<Column name="data_provider_id" conditions="enumRuleNum,enumContract" />
+			<Column name="data_provider_name" conditions="enumRuleNum,enumContract" />
+			<Column name="rate_type" conditions="enumRuleNum,enumContract" />
+			<Column name="data_cost" conditions="enumRuleNum,enumContract,non_enum"
+				default="ImpressionReader.floatZero" />
+			<Column name="turn_pay_data_cost" conditions="enumRuleNum,enumContract,non_enum"
+				default="ImpressionReader.floatZero" />
+			<Column name="market_pay_data_cost" conditions="enumRuleNum,enumContract,non_enum"
+				default="ImpressionReader.floatZero" />
+		</Table>
+		<Table name="dmp.clicks" depends="dmp.impressions" description=""
+			visible="true">
+			<!-- Note that any column can be pulled up to be "first" if it doesn't
+				change -->
+			<Column name="data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="turn_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="market_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+		</Table>
+		<Table name="dmp.actions" depends="dmp.impressions" description=""
+			visible="true">
+			<Column name="data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="turn_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="market_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="action" conditions="initial_rule_contract" />
+			<Column name="vta" conditions="initial_rule_contract" />
+			<Column name="cta" conditions="initial_rule_contract" />
+			<Column name="action_ts" conditions="initial_rule_contract" />
+			<Column name="order_number" conditions="initial_rule_contract" />
+			<Column name="shopping_cart_value" conditions="initial_rule_contract" />
+		</Table>
+		<Table name="dmp.tap_actions" depends="dmp.impressions"
+			description="" visible="true">
+			<Column name="data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="turn_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="market_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="cost" conditions="first" />
+			<Column name="cogs" conditions="first" />
+			<Column name="tap_vta" conditions="initial_rule_contract" />
+			<Column name="tap_cta" conditions="initial_rule_contract" />
+			<Column name="action_ts" conditions="initial_rule_contract" />
+			<Column name="order_number" conditions="initial_rule_contract" />
+			<Column name="shopping_cart_value" conditions="initial_rule_contract" />
+		</Table>
+		<Table name="dmp.engagement_events" depends="dmp.impressions"
+			description="" visible="true">
+			<Column name="data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="turn_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="market_pay_data_cost" conditions="first"
+				default="ImpressionReader.floatZero" />
+			<Column name="cost" conditions="first" />
+			<Column name="cogs" conditions="first" />
+			<Column name="engagement_event_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="engagement_event_ts" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+			<!-- Values determined by engagement event ID -->
+			<Column name="view_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="percent25_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="percent50_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="percent75_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="complete_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="audio_mute_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="audio_unmute_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="collapse_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="expand_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="pause_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="resume_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="rewind_events" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+		</Table>
+		<Table name="dmp.rtbids" depends="dmp.impressions" description=""
+			visible="true">
+			<Column name="rt_bid" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="rt_bid_request" conditions="first"
+				default="ImpressionReader.longZero" />
+			<Column name="rt_bid_win" conditions="initial_rule_contract"
+				default="ImpressionReader.longZero" />
+			<Column name="rtb_exchange_bid" conditions="initial_rule_contract"
+				default="ImpressionReader.floatZero" />
+			<Column name="rtbe_vendor_category_id" conditions="initial_rule_contract"
+				default="ImpressionReader.longNegativeOne" />
+		</Table>
+		<Table name="dmp.segments" depends="dmp"
+			description="1% of data is applied for Turn" visible="true">
+			<Column name="segment_id" conditions=""
+				default="ImpressionReader.longNegativeOne" />
+			<Column name="segment_name" conditions="" />
+		</Table>
+		<Table name="dmp.container_tags" depends="dmp" description=""
+			visible="true">
+			<Column name="media_provider_id" conditions="" />
+			<Column name="media_provider_name" conditions="" />
+			<Column name="media_channel_id" conditions="" />
+			<Column name="media_channel_name" conditions="" />
+			<Column name="type" conditions="" default="ImpressionReader.intZero" />
+			<Column name="segment_change_count" conditions="" />
+		</Table>
+		<Table name="dmp.provider_user_ids" depends="dmp" description=""
+			visible="true">
+			<Column name="provider_id" conditions="" />
+			<Column name="provider_type" conditions="" />
+			<Column name="provider_user_id" conditions="" />
+			<Column name="match_partner_id" conditions="" />
+			<Column name="match_partner_user_id" conditions="" />
+		</Table>
+		<Table name="ALL"
+			depends="dmp.data,dmp.impressions,dmp.clicks,dmp.actions,dmp.tap_actions,dmp.engagement_events,dmp.segments,dmp.container_tags,dmp.provider_user_ids,dmp.rtbids"
+			visible="false" />
+		<Media name="market ids">
+			<market id="1" name="Turn" visible="true" />
+			<market id="2" name="Turn Advertising" visible="true" />
+			<market id="3" name="Cadreon" visible="true" />
+			<market id="4" name="OMG Trading Desk" visible="true" />
+			<market id="5" name="IXI Trading Desk" visible="true" />
+			<market id="6" name="Expedia Trading Desk" visible="true" />
+			<market id="7" name="Lending Tree Trading Desk" visible="true" />
+			<market id="8" name="Mediasmith Trading Desk" visible="true" />
+			<market id="9" name="T-Mobile Trading Desk" visible="true" />
+			<market id="10" name="Varick Media Trading Desk" visible="true" />
+			<market id="11" name="Turn Test Timezone - GMT" visible="true" />
+			<market id="12" name="Amazon Trading Desk" visible="true" />
+			<market id="13" name="Datran Media Trading Desk" visible="true" />
+			<market id="14" name="Agency.com Trading Desk" visible="true" />
+			<market id="15" name="Netmining Trading Desk" visible="true" />
+			<market id="16" name="Moxie Interactive Trading Desk" visible="true" />
+			<market id="17" name="Turner Exchange Trading Desk" visible="true" />
+			<market id="18" name="Sapient Exchange Trading Desk" visible="true" />
+			<market id="19" name="AT&amp;T Interactive Trading Desk" visible="true" />
+			<market id="20" name="Performance Bridge Trading Desk"
+				visible="true" />
+			<market id="21" name="Virgin America Trading Desk" visible="true" />
+			<market id="22" name="Data Logix Trading Desk" visible="true" />
+			<market id="23" name="VivaKi Trading Desk" visible="true" />
+			<market id="24" name="Fuor Digital Trading Desk" visible="true" />
+			<market id="25" name="Skype Trading Desk" visible="true" />
+			<market id="26" name="Mindshare Exchange Trading Desk"
+				visible="true" />
+			<market id="27" name="AMNET U.S. Trading Desk" visible="true" />
+			<market id="28" name="Erwin Penland Exchange Trading Desk"
+				visible="true" />
+			<market id="29" name="MyLife Exchange Trading Desk" visible="true" />
+			<market id="30" name="Response Mine Exchange Trading Desk"
+				visible="true" />
+			<market id="31" name="Accuen NL Trading Desk" visible="true" />
+			<market id="32" name="Cendyn Trading Desk" visible="true" />
+			<market id="33" name="Spongecell Trading Desk" visible="true" />
+			<market id="34" name="Carat NY Trading Desk" visible="true" />
+			<market id="35" name="Yahoo Exchange Trading Desk" visible="true" />
+			<market id="36" name="NeoOgilvy Trading Desk" visible="true" />
+			<market id="37" name="Media Two Trading Desk" visible="true" />
+			<market id="38" name="StubHub Trading Desk" visible="true" />
+			<market id="39" name="RPA Trading Desk" visible="true" />
+			<market id="40" name="AutoTrader Trading Desk" visible="true" />
+			<market id="41" name="MediaCom Trading Desk" visible="true" />
+			<market id="42" name="Amerisave Trading Desk" visible="true" />
+			<market id="43" name="Studiocom Trading Desk" visible="true" />
+			<market id="44" name="Experian EMS Trading Desk" visible="true" />
+			<market id="45" name="Constant Contact Trading Desk" visible="true" />
+			<market id="46" name="Olson Trading Desk" visible="true" />
+			<market id="47" name="Charlottes Web Trading Desk" visible="true" />
+			<market id="48" name="ID Media Trading Desk" visible="true" />
+			<market id="49" name="CWUnited Trading Desk" visible="true" />
+			<market id="50" name="SpaceTime Media Trading Desk" visible="true" />
+			<market id="51" name="LMO Advertising Trading Desk" visible="true" />
+			<market id="52" name="Consumer Reports Trading Desk" visible="true" />
+			<market id="53" name="Adaptive Marketing Trading Desk"
+				visible="true" />
+			<market id="54" name="Digitas Boston Trading Desk" visible="true" />
+			<market id="55" name="Vantage Media - DSP Test" visible="true" />
+			<market id="56" name="RTCRM Trading Desk" visible="true" />
+			<market id="57" name="OMG RTB Test" visible="true" />
+			<market id="58" name="The Richards Group Trading Desk"
+				visible="true" />
+			<market id="59" name="Turn Demo" visible="true" />
+			<market id="60" name="RGA Trading Desk" visible="true" />
+			<market id="61" name="Magnetic Trading Desk" visible="true" />
+			<market id="62" name="King.com Trading Desk" visible="true" />
+			<market id="63" name="The Martin Agency Trading Desk" visible="true" />
+			<market id="64" name="Dream Products Trading Desk" visible="true" />
+			<market id="65" name="Blinq Media Trading Desk" visible="true" />
+			<market id="66" name="Pretarget Trading Desk" visible="true" />
+			<market id="67" name="Progressive Trading Desk" visible="true" />
+			<market id="68" name="McKinney Trading Desk" visible="true" />
+			<market id="69" name="GTO Trading Desk" visible="true" />
+			<market id="70" name="Rockett Interactive Trading Desk"
+				visible="true" />
+			<market id="71" name="BuzzFeed Trading Desk" visible="true" />
+			<market id="72" name="Apollo Group Trading Desk" visible="true" />
+			<market id="73" name="Experian EIG Trading Desk" visible="true" />
+			<market id="74" name="WebMD Trading Desk" visible="true" />
+			<market id="75" name="Hill Holiday Trading Desk" visible="true" />
+			<market id="76" name="Kuwali Trading Desk" visible="true" />
+			<market id="77" name="Intelligent Beauty Trading Desk"
+				visible="true" />
+			<market id="78" name="Viking River Trading Desk" visible="true" />
+			<market id="79" name="Zvents Trading Desk" visible="true" />
+			<market id="80" name="Channel Intelligence Trading Desk"
+				visible="true" />
+			<market id="81" name="Club Med Trading Desk" visible="true" />
+			<market id="82" name="Target Trading Desk" visible="true" />
+			<market id="83" name="Match.com Trading Desk" visible="true" />
+			<market id="84" name="Vibrant Media Trading Desk" visible="true" />
+			<market id="85" name="Adsummos Trading Desk" visible="true" />
+			<market id="86" name="Universal McCann Trading Desk" visible="true" />
+			<market id="87" name="Deutsch Trading Desk" visible="true" />
+			<market id="88" name="FRWD Trading Desk" visible="true" />
+			<market id="89" name="ARAnet Trading Desk" visible="true" />
+			<market id="90" name="Digital Target Trading Desk" visible="true" />
+			<market id="91" name="Tangible Media Trading Desk" visible="true" />
+			<market id="92" name="AOL Trading Desk" visible="true" />
+			<market id="93" name="33Across Trading Desk" visible="true" />
+			<market id="94" name="Akamai Trading Desk" visible="true" />
+			<market id="95" name="Ebay Trading Desk" visible="true" />
+			<market id="96" name="Empower Media Trading Desk" visible="true" />
+			<market id="97" name="AMNET EMEA" visible="true" />
+			<market id="98" name="Horizon Interactive Trading Desk"
+				visible="true" />
+			<market id="99" name="Hungry Fish Trading Desk" visible="true" />
+			<market id="100" name="AT&amp;T Advanced Ad Solutions" visible="true" />
+			<market id="101" name="Innovation Capital One Trading Desk"
+				visible="true" />
+			<market id="102" name="Ideeli Trading Desk" visible="true" />
+			<market id="103" name="IPG NL Trading Desk" visible="true" />
+			<market id="104" name="Media Partnership Trading Desk"
+				visible="true" />
+			<market id="105" name="CampaignGrid Trading Desk" visible="true" />
+			<market id="106" name="TPG Direct" visible="true" />
+			<market id="107" name="Compass Point Media" visible="true" />
+			<market id="108" name="Struq UK Trading Desk" visible="true" />
+			<market id="109" name="Accuen International Trading Desk"
+				visible="true" />
+			<market id="110" name="eProspects UK Trading Desk" visible="true" />
+			<market id="111" name="Zimmerman Trading Desk" visible="true" />
+			<market id="112" name="Tradelab FR Trading Desk" visible="true" />
+			<market id="113" name="Blowfish Digital Trading Desk" visible="true" />
+			<market id="114" name="Digitas Health Trading Desk" visible="true" />
+			<market id="115" name="Media Darwin Trading Desk" visible="true" />
+			<market id="116" name="Brunner Trading Desk" visible="true" />
+			<market id="117" name="Gotham Direct Trading Desk" visible="true" />
+			<market id="118" name="Buzz Marketing Trading Desk" visible="true" />
+			<market id="119" name="Nurun Trading Desk" visible="true" />
+			<market id="120" name="Eye Traffic Trading Desk" visible="true" />
+			<market id="121" name="Fleishman Trading Desk" visible="true" />
+			<market id="122" name="Questus Trading Desk" visible="true" />
+			<market id="123" name="Touchpoint Trading Desk" visible="true" />
+			<market id="124" name="Media Contacts Trading Desk" visible="true" />
+			<market id="125" name="Dentsu Trading Desk" visible="true" />
+			<market id="126" name="Tapestry Partners Trading Desk"
+				visible="true" />
+			<market id="127" name="Turn Training" visible="true" />
+			<market id="128" name="Sojern Trading Desk" visible="true" />
+			<market id="129" name="Network Solutions Trading Desk"
+				visible="true" />
+			<market id="130" name="One to One Interactive Trading Desk"
+				visible="true" />
+			<market id="131" name="Levelwing Media Trading Desk" visible="true" />
+			<market id="132" name="Carat Atlanta Trading Desk" visible="true" />
+			<market id="133" name="CSN Stores Trading Desk" visible="true" />
+			<market id="134" name="Goodby Silverstein Trading Desk"
+				visible="true" />
+			<market id="135" name="Catalina Marketing Trading Desk"
+				visible="true" />
+			<market id="136" name="Elite Partners Trading Desk" visible="true" />
+			<market id="137" name="Hurra Communications Trading Desk"
+				visible="true" />
+			<market id="138" name="Pilot Germany Trading Desk" visible="true" />
+			<market id="139" name="LBI Exchange Trading Desk" visible="true" />
+			<market id="140" name="Booyah Advertising Trading Desk"
+				visible="true" />
+			<market id="141" name="TCAA USA Exchange Trading Desk"
+				visible="true" />
+			<market id="142" name="AudienceRate Trading Desk" visible="true" />
+			<market id="143" name="Accuen UK Trading Desk" visible="true" />
+			<market id="144" name="Forward Digital Trading Desk" visible="true" />
+			<market id="145" name="Accuen DE Trading Desk" visible="true" />
+			<market id="146" name="Cadreon UK Trading Desk" visible="true" />
+			<market id="147" name="ActualSales Trading Desk" visible="true" />
+			<market id="148" name="MME Trading Desk" visible="true" />
+			<market id="149" name="Mediacom UK Trading Desk" visible="true" />
+			<market id="150" name="Agence79 Trading Desk" visible="true" />
+			<market id="151" name="iMarketing LTD Trading Desk" visible="true" />
+			<market id="152" name="The DuMont Project Trading Desk"
+				visible="true" />
+			<market id="153" name="Accuen NL Zilveren Trading Desk"
+				visible="true" />
+			<market id="154" name="Mullen Exchange Trading Desk" visible="true" />
+			<market id="155" name="Mediabrands FR Trading Desk" visible="true" />
+			<market id="156" name="Avid Life Media Trading Desk" visible="true" />
+			<market id="157" name="SmartBrief Trading Desk" visible="true" />
+			<market id="158" name="Online Supply Trading Desk" visible="true" />
+			<market id="159" name="DigilowCost Trading Desk" visible="true" />
+			<market id="160" name="eProfessional Trading Desk" visible="true" />
+			<market id="161" name="ScaleOut Trading Desk" visible="true" />
+			<market id="162" name="D3media Trading Desk" visible="true" />
+			<market id="163" name="Performance Advertising Trading Desk"
+				visible="true" />
+			<market id="164" name="Nutrisystem Trading Desk" visible="true" />
+			<market id="165" name="Webliquid Trading Desk" visible="true" />
+			<market id="166" name="Converge Direct Trading Desk" visible="true" />
+			<market id="167" name="Mindshare Unilever Trading Desk"
+				visible="true" />
+			<market id="168" name="Travelers Insurance Trading Desk"
+				visible="true" />
+			<market id="169" name="Cadreon DE Trading Desk" visible="true" />
+			<market id="170" name="MyBuys Trading Desk" visible="true" />
+			<market id="171" name="PreciseAd" visible="true" />
+			<market id="172" name="D50 media Trading Desk" visible="true" />
+			<market id="173" name="Netzwerk Reklame Trading Desk" visible="true" />
+			<market id="174" name="People Media Trading Desk" visible="true" />
+			<market id="175" name="iBelieve Trading Desk" visible="true" />
+			<market id="176" name="Cognitive Match Trading Desk" visible="true" />
+			<market id="177" name="Perion Network Trading Desk" visible="true" />
+			<market id="178" name="Nanalab Trading Desk" visible="true" />
+			<market id="179" name="Clansman Trading Desk" visible="true" />
+			<market id="180" name="4W MarketPlace S.r.l" visible="true" />
+			<market id="181" name="Three Ships Media Trading Desk"
+				visible="true" />
+			<market id="182" name="360i Exchange Trading Desk" visible="true" />
+			<market id="183" name="Initiative ATL Trading Desk" visible="true" />
+			<market id="184" name="Precision Marketing Trading Desk"
+				visible="true" />
+			<market id="185" name="Media Contacts UK Trading Desk"
+				visible="true" />
+			<market id="186" name="New Agency FR Trading Desk" visible="true" />
+			<market id="187" name="E-Quadrant Communications GmbH  Trading Desk"
+				visible="true" />
+			<market id="188" name="Targetcast Trading Desk" visible="true" />
+			<market id="189" name="BPI Trading Desk" visible="true" />
+			<market id="190" name="American Tire Distributors Trading Desk"
+				visible="true" />
+			<market id="191" name="Avilan Marketing Trading Desk" visible="true" />
+			<market id="192" name="Cadreon NL Trading Desk" visible="true" />
+			<market id="193" name="Bizo Trading Desk" visible="true" />
+			<market id="194" name="Essence Trading Desk" visible="true" />
+			<market id="195" name="OMD Denmark Trading Desk" visible="true" />
+			<market id="196" name="Digitouch Trading Desk" visible="true" />
+			<market id="197" name="The FRS Company" visible="true" />
+			<market id="198" name="Converseon" visible="true" />
+			<market id="199" name="Anthropic Technology" visible="true" />
+			<market id="200" name="Sporting Bet" visible="true" />
+			<market id="201" name="Square One" visible="true" />
+			<market id="202" name="Razorfish" visible="true" />
+			<market id="203" name="Wieden + Kennedy Trading Desk" visible="true" />
+			<market id="204" name="Netbooster EU" visible="true" />
+			<market id="205" name="Zodiak Active Italy" visible="true" />
+			<market id="206" name="Cadreon FR Trading Desk" visible="true" />
+			<market id="207" name="Mediaxplain" visible="true" />
+			<market id="208" name="Brandalley France" visible="true" />
+			<market id="209" name="Reachnet DE" visible="true" />
+			<market id="210" name="MediaScience" visible="true" />
+			<market id="211" name="Unique Digital" visible="true" />
+			<market id="212" name="Dean Media Group" visible="true" />
+			<market id="213" name="LSF Interactive" visible="true" />
+			<market id="214" name="VitalOne" visible="true" />
+			<market id="215" name="Nokia" visible="true" />
+			<market id="216" name="Universal Orlando" visible="true" />
+			<market id="217" name="Cox Digital Solutions" visible="true" />
+			<market id="218" name="Convertro" visible="true" />
+			<market id="219" name="Adverline" visible="true" />
+			<market id="220" name="Compliance" visible="true" />
+			<market id="221" name="Remotely.tv" visible="true" />
+			<market id="222" name="Maxus" visible="true" />
+			<market id="223" name="Turn Corporate Advertising" visible="true" />
+			<market id="224" name="Gamned" visible="true" />
+			<market id="225" name="Microsoft" visible="true" />
+			<market id="226" name="Mindshare Kimberly Clark" visible="true" />
+			<market id="227" name="nFusion" visible="true" />
+			<market id="228" name="Spark Networks" visible="true" />
+			<market id="229" name="Placomed" visible="true" />
+			<market id="230" name="Sendgrid" visible="true" />
+			<market id="231" name="Wyndham Hotel Group" visible="true" />
+			<market id="232" name="eTrade" visible="true" />
+			<market id="233" name="Mediascale" visible="true" />
+			<market id="234" name="Vivaki - Verizon Wireless" visible="true" />
+			<market id="235" name="True Media" visible="true" />
+			<market id="236" name="Ignition One" visible="true" />
+			<market id="237" name="Mediacom LA" visible="true" />
+			<market id="238" name="The7stars" visible="true" />
+			<market id="239" name="Media Storm" visible="true" />
+			<market id="240" name="Mama Digital" visible="true" />
+			<market id="241" name="Trafficbuyer" visible="true" />
+			<market id="242" name="MEC Global" visible="true" />
+			<market id="243" name="Neo@Ogilvy DE" visible="true" />
+			<market id="244" name="AIMIA" visible="true" />
+			<market id="245" name="Hoovers" visible="true" />
+			<market id="246" name="Vimeo" visible="true" />
+			<market id="247" name="Targeted Victory" visible="true" />
+			<market id="248" name="jiWire" visible="true" />
+			<market id="249" name="Jesta Digital" visible="true" />
+			<market id="250" name="Xaxis Premium" visible="true" />
+			<market id="251" name="Turn Test Timezone – CET" visible="true" />
+			<market id="252" name="Turn Test Timezone – BRT" visible="true" />
+			<market id="253" name="CentroDallas" visible="true" />
+			<market id="254" name="Advertstream" visible="true" />
+			<market id="255" name="Space" visible="true" />
+			<market id="256" name="Adscale" visible="true" />
+			<market id="257" name="Hotels.com" visible="true" />
+			<market id="258" name="Populis" visible="true" />
+			<market id="259" name="Wunderman Brasil" visible="true" />
+			<market id="260" name="CM Network" visible="true" />
+			<market id="261" name="Cadreon CA Trading Desk" visible="true" />
+			<market id="262" name="Camelot Communications" visible="true" />
+			<market id="263" name="Acquisio" visible="true" />
+			<market id="264" name="VisualDNA" visible="true" />
+			<market id="265" name="Mindshare Belgium" visible="true" />
+		</Media>
+		<Media>
+			<channel id="1" name="Display" visible="true" />
+			<channel id="2" name="Video" visible="true" />
+			<channel id="3" name="Social" visible="true" />
+			<channel id="4" name="Mobile" visible="true" />
+			<channel id="5" name="Email" visible="true" />
+			<channel id="6" name="Search" visible="true" />
+		</Media>
+	</CheetahProfile>
+	<CheetahICA>
+		<Table name="Imp/Click/Action/Engagement/RtBid Tables"
+			description="" visible="true">
+			<Column name="access_to_top_denied" type="Integer"
+				description="" />
+			<Column name="action" type="Integer"
+				description="1 for contract action, 0 otherwise" />
+			<Column name="action_datetime" type="Integer"
+				description="Epoch time in millisecond" />
+			<Column name="action_prob" type="Float" description="" />
+			<Column name="action_timestamp" type="String" description="yyyy_MM_dd HH:mm:ss.SSS" />
+			<Column name="ad_call" type="Integer" description="1 or many (for adjustments)" />
+			<Column name="ad_call_expense" type="Float" description="net media cost" />
+			<Column name="ad_call_id" type="Integer" description="" />
+			<Column name="ad_call_layout_id" type="Integer" description="" />
+			<Column name="ad_call_pricing_type" type="Integer"
+				description="" />
+			<Column name="ad_click_url" type="String" description="" />
+			<Column name="ad_code_id" type="Integer" description="" />
+			<Column name="ad_experiment_bucket_id" type="Integer"
+				description="" />
+			<Column name="ad_format_id" type="Integer" description="" />
+			<Column name="ad_group_id" type="Integer" description="" />
+			<Column name="ad_has_creative_id" type="Integer" description="" />
+			<Column name="ad_id" type="Integer" description="" />
+			<Column name="ad_scoring_time" type="Integer" description="in millisecond" />
+			<Column name="ad_selection_Column1" type="Float" description="" />
+			<Column name="ad_selection_Column2" type="Float" description="" />
+			<Column name="ad_selection_mode" type="String" description="" />
+			<Column name="ad_selection_state_id" type="Integer"
+				description="" />
+			<Column name="ads_cost" type="Float" description="" />
+			<Column name="advertiser_id" type="Integer" description="" />
+			<Column name="advertiser_name" type="String" description="" />
+			<Column name="advertiser_user_data" type="String" description="e.g., DLX GUID" />
+			<Column name="assigned_cpa_action" type="Float"
+				description="a.k.a shopping_cart_value" />
+			<Column name="attribution_results" type="String" description="" />
+			<Column name="audition_id" type="Integer" description="" />
+			<Column name="audition_schedule_id" type="Integer"
+				description="" />
+			<Column name="beacon_id" type="Integer"
+				description="targeted conversion beacon id, only in transaction table" />
+			<Column name="beacon_name" type="String"
+				description="targeted conversion beacon name, only in transaction table" />
+			<Column name="behavior_id" type="Integer" description="" />
+			<Column name="behavior_signal_id" type="Integer" description="" />
+			<Column name="behavior_signal_name" type="String" description="" />
+			<Column name="behavior_signal_type_id" type="Integer"
+				description="" />
+			<Column name="bid" type="Integer" description="1 for bid, 0 for no-bid" />
+			<Column name="bid_imp_user_id_equality_type_id" type="Integer"
+				description="" />
+			<Column name="bid_price" type="Float" description="" />
+			<Column name="bid_price_type_id" type="Integer" description="" />
+			<Column name="bid_request_decode_time" type="Integer"
+				description="" />
+			<Column name="bid_request_id" type="Integer" description="" />
+			<Column name="bid_request_str" type="String" description="" />
+			<Column name="bidding_tactics" type="Integer" description="" />
+			<Column name="billing_invoice" type="Float" description="" />
+			<Column name="billing_margin" type="Float" description="" />
+			<Column name="blending_weight" type="Float" description="" />
+			<Column name="boost_factor" type="Float" description="" />
+			<Column name="browser_type" type="Integer" description="" />
+			<Column name="browser_version" type="Integer" description="" />
+			<Column name="bt_3rd_party_databits" type="Integer"
+				description="" />
+			<Column name="channel_id" type="Integer" description="a.k.a media_channel_id" />
+			<Column name="cid" type="String" description="" />
+			<Column name="city" type="String" description="" />
+			<Column name="click" type="Integer" description="1 for click , 0 otherwise" />
+			<Column name="click_datetime" type="Integer" description="in millisecond" />
+			<Column name="click_prob" type="Float" description="" />
+			<Column name="click_through_action" type="Integer"
+				description="1 for click through action, 0 otherwise" />
+			<Column name="click_timestamp" type="String" description="yyyy_MM_dd HH:mm:ss.SSS" />
+			<Column name="cogs" type="Float" description="Cost of Good Sold" />
+			<Column name="connection_speed_id" type="Integer" description="" />
+			<Column name="contract_type_id" type="Integer" description="" />
+			<Column name="conversion_prob" type="Float" description="" />
+			<Column name="cost" type="Float" description="a.k.a Advertiser Invoice" />
+			<Column name="country" type="String" description="" />
+			<Column name="cpa_cost" type="Float" description="a.k.a CPA advertiser invoice" />
+			<Column name="cpa_goal" type="Float" description="" />
+			<Column name="cpc_cost" type="Float" description="a.k.a CPC advertiser invoice" />
+			<Column name="cpc_goal" type="Float" description="" />
+			<Column name="cpm_cost" type="Float" description="a.k.a CPM advertiser invoice" />
+			<Column name="creative_id" type="Integer" description="" />
+			<Column name="creative_name" type="String" description="" />
+			<Column name="creative_size" type="String" description="" />
+			<Column name="creative_type_id" type="Integer" description="" />
+			<Column name="cta_value" type="Float" description="" />
+			<Column name="current_bid_price" type="Float" description="" />
+			<Column name="current_cpa_goal" type="Float" description="" />
+			<Column name="current_cpc_goal" type="Float" description="" />
+			<Column name="custom_channel_id" type="Integer" description="" />
+			<Column name="data_cost" type="Float" description="Cost for using data in TAP" />
+			<Column name="default_ad_type_id" type="Integer" description="" />
+			<Column name="default_reason_id" type="Integer" description="" />
+			<Column name="dma" type="String" description="" />
+			<Column name="dma_cluster_id" type="Integer" description="" />
+			<Column name="domain_channel_id" type="Integer" description="" />
+			<Column name="dpp_Column1" type="Integer" description="" />
+			<Column name="dpp_Column2" type="Integer" description="" />
+			<Column name="dpp_Column3" type="Integer" description="" />
+			<Column name="dpp_level" type="Integer" description="" />
+			<Column name="dpp_rate_string" type="String" description="" />
+			<Column name="dpp_successes" type="Float" description="" />
+			<Column name="dpp_trials" type="Float" description="" />
+			<Column name="dynamic_pricing" type="Integer" description="" />
+			<Column name="engagement_event_id" type="Integer" description="" />
+			<Column name="engagement_event_ts" type="Integer" description="" />
+			<Column name="exchange_category_id" type="Integer"
+				description="" />
+			<Column name="exchange_fee" type="Float" description="" />
+			<Column name="exchange_line_item_id" type="Integer"
+				description="" />
+			<Column name="experiment_bucket_id" type="Integer"
+				description="" />
+			<Column name="experiment_id" type="Integer" description="" />
+			<Column name="ext_latitude" type="Float" description="Turn user only" />
+			<Column name="ext_longitude" type="Float" description="Turn user only" />
+			<Column name="ext_country_code" type="String" description="Turn user only" />
+			<Column name="ext_dma_id" type="Short" description="Turn user only" />
+			<Column name="ext_carrier" type="String" description="Turn user only" />
+			<Column name="ext_keyword" type="String" description="Turn user only" />
+			<Column name="ext_gender" type="Byte" description="Turn user only" />
+			<Column name="ext_paid_service" type="Byte" description="Turn user only" />
+			<Column name="ext_app" type="Byte" description="Turn user only" />
+			<Column name="ext_year_of_birth" type="Short" description="Turn user only" />
+			<Column name="external_tpa_id" type="String" description="" />
+			<Column name="fifth_beacon_freq_buc" type="Integer"
+				description="" />
+			<Column name="fifth_beacon_id" type="Integer"
+				description="The ID of the fifth latest beacon according to the same advertiser (note it could be from different advertiser if less than 5 beacons exist for that advertiser)" />
+			<Column name="fifth_beacon_recency_buc" type="Integer"
+				description="" />
+			<Column name="fifth_behavior_id" type="Integer"
+				description="The ID of the fifth latest behavior according to the same advertiser (note it could be from different advertiser if less than 5 behaviors exist for that advertiser)" />
+			<Column name="fifth_tag_id" type="Integer" description="" />
+			<Column name="first_beacon_freq_buc" type="Integer"
+				description="" />
+			<Column name="first_beacon_id" type="Integer"
+				description="The ID of the latest beacon according to the same advertiser" />
+			<Column name="first_beacon_recency_buc" type="Integer"
+				description="" />
+			<Column name="first_behavior_id" type="Integer"
+				description="The ID of the latest behavior according to the same advertiser" />
+			<Column name="first_tag_id" type="Integer" description="" />
+			<Column name="first_tut_cat_id" type="Integer" description="" />
+			<Column name="first_tut_freq_buc" type="Integer" description="" />
+			<Column name="first_tut_recency_buc" type="Integer"
+				description="" />
+			<Column name="first_tut_resp_type" type="Integer" description="" />
+			<Column name="fourth_beacon_freq_buc" type="Integer"
+				description="" />
+			<Column name="fourth_beacon_id" type="Integer"
+				description="The ID of the fourth latest beacon according to the same advertiser" />
+			<Column name="fourth_beacon_recency_buc" type="Integer"
+				description="" />
+			<Column name="fourth_behavior_id" type="Integer"
+				description="The ID of the fourth latest behavior according to the same advertiser" />
+			<Column name="fourth_tag_id" type="Integer" description="" />
+			<Column name="gender" type="Integer" description="" />
+			<Column name="home_market_id" type="Integer" description="Advertiser market id" />
+			<Column name="home_market_name" type="String" description="Advertiser market name" />
+			<Column name="id_map_time" type="Integer" description="" />
+			<Column name="impression" type="Integer"
+				description="1 or more (adjustment) for impressions, 0 for publisher default" />
+			<Column name="impression_date" type="String" description="yyyy_MM_dd" />
+			<Column name="impression_datetime" type="Integer" description="in millisecond" />
+			<Column name="impression_day" type="Integer" description="" />
+			<Column name="impression_day_of_week" type="String"
+				description="e.g., Monday" />
+			<Column name="impression_hour" type="Integer" description="" />
+			<Column name="impression_timestamp" type="String"
+				description="yyyy_MM_dd HH:mm:ss.SSS" />
+			<Column name="impressionday" type="String" description="" />
+			<Column name="insertion_order_id" type="Integer" description="" />
+			<Column name="insertion_order_name" type="String" description="" />
+			<Column name="inv_cost" type="Float" description="#NAME?" />
+			<Column name="inventory_carry_fee" type="Float" description="" />
+			<Column name="inventory_source_id" type="Integer" description="" />
+			<Column name="inventory_source_name" type="String"
+				description="" />
+			<Column name="io_cpa_goal" type="Float" description="" />
+			<Column name="io_cpc_goal" type="Float" description="" />
+			<Column name="io_current_budget" type="Float" description="" />
+			<Column name="io_day_imp_freq" type="Integer" description="" />
+			<Column name="io_end_date" type="String" description="" />
+			<Column name="io_goal_amount" type="Float" description="" />
+			<Column name="io_goal_type_id" type="Integer" description="" />
+			<Column name="io_number" type="String" description="" />
+			<Column name="io_start_date" type="String" description="" />
+			<Column name="io_week_imp_freq" type="Integer" description="" />
+			<Column name="ip" type="String" description="#NAME?" />
+			<Column name="ip_address" type="Integer" description="" />
+			<Column name="is_budget_optimized" type="Integer" description="" />
+			<Column name="is_managed" type="Integer" description="" />
+			<Column name="is_multi_bid" type="Integer" description="" />
+			<Column name="is_new_user" type="Integer" description="" />
+			<Column name="is_tpa_advertiser" type="Integer" description="" />
+			<Column name="ixi_economic_spectrum_tier" type="Integer"
+				description="" />
+			<Column name="ixi_household_income_tier" type="Integer"
+				description="" />
+			<Column name="ixi_spending_dollars_tier" type="Integer"
+				description="" />
+			<Column name="learning_tactics" type="Integer" description="" />
+			<Column name="li_has_beacon" type="Integer" description="1 or 0" />
+			<Column name="li_has_behavior" type="Integer" description="1 or 0" />
+			<Column name="li_has_segment" type="Integer" description="1 or 0" />
+			<Column name="li_imp_freq" type="Integer" description="" />
+			<Column name="line_item_id" type="Integer" description="" />
+			<Column name="line_item_name" type="String" description="" />
+			<Column name="line_item_turn_category_id" type="Integer"
+				description="" />
+			<Column name="log_record_type" type="Integer" description="" />
+			<Column name="market_id" type="Integer" description="Publisher market id" />
+			<Column name="max_age" type="Integer" description="" />
+			<Column name="max_top_opt_rpai" type="Float" description="" />
+			<Column name="min_age" type="Integer" description="" />
+			<Column name="model_exec_spec_id" type="Integer" description="" />
+			<Column name="model_scorer_type" type="Integer" description="" />
+			<Column name="mobile_device_model" type="String"
+				description="Derived from user_agent for mobile targeting" />
+			<Column name="mobile_device_type" type="String"
+				description="Derived from user_agent for mobile targeting" />
+			<Column name="mobile_device_manufacturer" type="String"
+				description="Derived from user_agent for mobile targeting" />
+			<Column name="mobile_device_os" type="String"
+				description="Derived from user_agent for mobile targeting" />
+			<Column name="mobile_device_os_version" type="String"
+				description="Derived from user_agent for mobile targeting" />
+			<Column name="no_flash_plugin" type="Integer" description="" />
+			<Column name="non_billable_click" type="Integer" description="" />
+			<Column name="non_billable_rev_share_cost" type="Float"
+				description="" />
+			<Column name="non_score_dpp_level" type="Integer" description="" />
+			<Column name="non_score_level_successes" type="Float"
+				description="" />
+			<Column name="non_score_level_trials" type="Float"
+				description="" />
+			<Column name="num_ads_after_tcm" type="Integer" description="" />
+			<Column name="num_eligible_ads" type="Integer" description="" />
+			<Column name="opt_goal" type="Float" description="" />
+			<Column name="opt_type" type="Integer" description="" />
+			<Column name="optimization_tactics" type="Integer"
+				description="" />
+			<Column name="optimize_exchange_bid" type="Integer"
+				description="" />
+			<Column name="order_number" type="String" description="" />
+			<Column name="orig_rank_top_ad_after_rotation" type="Integer"
+				description="" />
+			<Column name="origin_creative_id" type="Integer" description="" />
+			<Column name="original_inv_cost" type="Float" description="" />
+			<Column name="os_type" type="Integer" description="" />
+			<Column name="os_version" type="Integer" description="" />
+			<Column name="packag_current_budget" type="Float" description="" />
+			<Column name="packag_end_date" type="String" description="" />
+			<Column name="packag_experiment_id" type="Integer"
+				description="" />
+			<Column name="packag_goal_amount" type="Float" description="" />
+			<Column name="packag_goal_type_id" type="Integer" description="" />
+			<Column name="packag_id" type="Integer" description="" />
+			<Column name="packag_name" type="String" description="" />
+			<Column name="packag_start_date" type="String" description="" />
+			<Column name="package_id" type="Integer" description="" />
+			<Column name="package_name" type="String" description="" />
+			<Column name="partner_fee" type="Float" description="" />
+			<Column name="partner_markup" type="Float" description="" />
+			<Column name="partner_reserve" type="Float" description="" />
+			<Column name="performance_reserve" type="Float" description="" />
+			<Column name="pkg_day_imp_freq" type="Integer" description="" />
+			<Column name="pkg_week_imp_freq" type="Integer" description="" />
+			<Column name="postal_cluster_id" type="Integer" description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="pp_inclusion_mask" type="Integer" description="" />
+			<Column name="pricing_type_id" type="Integer" description="" />
+			<Column name="profile_and_ad_call_setup_time" type="Integer"
+				description="" />
+			<Column name="profile_creation_time_in_sec" type="Integer"
+				description="" />
+			<Column name="pub_contract_violation_id" type="Integer"
+				description="" />
+			<Column name="publisher_id" type="Integer" description="" />
+			<Column name="publisher_name" type="String" description="" />
+			<Column name="rank" type="Integer" description="" />
+			<Column name="recipe_id" type="Integer" description="Tumri, Channel Intelligence ID" />
+			<Column name="reconciliation_factor" type="Float" description="" />
+			<Column name="referer_domain" type="String" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="rpai_after_rotation" type="Float" description="" />
+			<Column name="rpai_before_rotation" type="Float" description="" />
+			<Column name="rpai_top_ad_before_rotation" type="Float"
+				description="" />
+			<Column name="rtbe_vendor_category_id" type="Integer"
+				description="" />
+			<Column name="rtbexchange_bid" type="Float" description="" />
+			<Column name="rtbexchange_id" type="Integer" description="" />
+			<Column name="second_beacon_freq_buc" type="Integer"
+				description="" />
+			<Column name="second_beacon_id" type="Integer"
+				description="The ID of the second latest beacon according to the same advertiser" />
+			<Column name="second_beacon_recency_buc" type="Integer"
+				description="" />
+			<Column name="second_behavior_id" type="Integer"
+				description="The ID of the second latest behavior according to the same advertiser" />
+			<Column name="second_best_ad_id" type="Integer" description="" />
+			<Column name="second_best_ad_rpai" type="Float" description="" />
+			<Column name="second_tag_id" type="Integer" description="" />
+			<Column name="second_tut_cat_id" type="Integer" description="" />
+			<Column name="second_tut_freq_buc" type="Integer" description="" />
+			<Column name="second_tut_recency_buc" type="Integer"
+				description="" />
+			<Column name="second_tut_resp_type" type="Integer"
+				description="" />
+			<Column name="shopping_cart_value" type="Float" description="a.k.a bprice" />
+			<Column name="site_cluster_id" type="Integer" description="" />
+			<Column name="site_section_full_path" type="String"
+				description="" />
+			<Column name="site_section_id" type="Integer" description="" />
+			<Column name="subdomain" type="String" description="" />
+			<Column name="tag_id" type="Integer" description="" />
+			<Column name="target_page_area_code" type="Integer"
+				description="" />
+			<Column name="target_page_city_name" type="String"
+				description="" />
+			<Column name="target_page_country_name" type="String"
+				description="" />
+			<Column name="target_page_dma" type="String" description="" />
+			<Column name="target_page_dma_code" type="Integer"
+				description="" />
+			<Column name="target_page_postal_code" type="String"
+				description="" />
+			<Column name="target_page_region" type="String" description="" />
+			<Column name="target_page_url" type="String" description="" />
+			<Column name="targeted_segment_id" type="Integer" description="" />
+			<Column name="targeting_details" type="Integer" description="" />
+			<Column name="tat_cat_imp_freq" type="Integer" description="" />
+			<Column name="tat_category_id" type="Integer" description="" />
+			<Column name="tat_category_level1_id" type="Integer"
+				description="" />
+			<Column name="tat_category_level1_name" type="String"
+				description="" />
+			<Column name="tat_category_name" type="String" description="" />
+			<Column name="tcm_actions" type="Float" description="" />
+			<Column name="tcm_clicks" type="Float" description="" />
+			<Column name="tcm_dpp_level" type="Integer" description="" />
+			<Column name="tcm_rpai" type="Float" description="" />
+			<Column name="third_beacon_freq_buc" type="Integer"
+				description="" />
+			<Column name="third_beacon_id" type="Integer"
+				description="The ID of the third latest beacon according to the same advertiser" />
+			<Column name="third_beacon_recency_buc" type="Integer"
+				description="" />
+			<Column name="third_behavior_id" type="Integer"
+				description="The ID of the third latest behavior according to the same advertiser" />
+			<Column name="third_best_ad_id" type="Integer" description="" />
+			<Column name="third_best_ad_rpai" type="Float" description="" />
+			<Column name="third_tag_id" type="Integer" description="" />
+			<Column name="third_tut_cat_id" type="Integer" description="" />
+			<Column name="third_tut_freq_buc" type="Integer" description="" />
+			<Column name="third_tut_recency_buc" type="Integer"
+				description="" />
+			<Column name="third_tut_resp_type" type="Integer" description="" />
+			<Column name="tier_id" type="Integer" description="inventory source tier id" />
+			<Column name="time_zone_offset" type="Integer" description="" />
+			<Column name="tld" type="String" description="" />
+			<Column name="tld_group" type="String" description="" />
+			<Column name="total_ad_call_time" type="Integer" description="" />
+			<Column name="tpa_action" type="Float" description="" />
+			<Column name="tpa_click" type="Float" description="" />
+			<Column name="tpa_impression" type="Float" description="" />
+			<Column name="tpa_cta" type="Float" description="" />
+			<Column name="tpa_vta" type="Float" description="" />
+			<Column name="tpt_category_id" type="Integer" description="" />
+			<Column name="tpt_category_level1_id" type="Integer"
+				description="" />
+			<Column name="tpt_category_level1_name" type="String"
+				description="" />
+			<Column name="tpt_category_name" type="String" description="" />
+			<Column name="turn_fee" type="Float" description="" />
+			<Column name="turn_markup" type="Float" description="" />
+			<Column name="turn_reserve" type="Float" description="" />
+			<Column name="tut_cat_id" type="Integer" description="" />
+			<Column name="tut_freq_buc" type="Integer" description="" />
+			<Column name="tut_recency_buc" type="Integer" description="" />
+			<Column name="tut_resp_type" type="Integer" description="" />
+			<Column name="uncorrected_click_prob" type="Float"
+				description="" />
+			<Column name="uncorrected_conversion_prob" type="Float"
+				description="" />
+			<Column name="unpivot_beacon_advertiser_id" type="Integer"
+				description="derived column, from 1st/2nd/3rd/4th/5th_beacon_id" />
+			<Column name="unpivot_beacon_freq_buc" type="Integer"
+				description="" />
+			<Column name="unpivot_beacon_id" type="Integer" description="" />
+			<Column name="unpivot_beacon_recency_buc" type="Integer"
+				description="" />
+			<Column name="unpivot_behavior_advertiser_id" type="Integer"
+				description="" />
+			<Column name="user_ad_imp_freq" type="Integer" description="" />
+			<Column name="user_agent" type="String" description="" />
+			<Column name="user_cluster_id" type="Integer" description="" />
+			<Column name="user_id" type="Integer" description="" />
+			<Column name="view_through_action" type="Integer"
+				description="1 or view through action, 0 otherwise" />
+			<Column name="visible_ad_area_percent" type="Integer"
+				description="e.g., 100 (100%), 50 (50%), -1 (Unknown)" />
+			<Column name="vta_value" type="Float" description="" />
+			<Column name="win" type="Integer"
+				description="1 for winning bid, 0 for losing or no bid" />
+			<Column name="yahoo_gender" type="Integer" description="" />
+			<Column name="yahoo_max_age" type="Integer" description="" />
+			<Column name="yahoo_min_age" type="Integer" description="" />
+			<Column name="contextual_contract_id" type="Integer"
+				description="" />
+			<Column name="page_quality_contract_id" type="Integer"
+				description="" />
+			<Column name="brand_safety_contract_id" type="Integer"
+				description="" />
+			<Column name="contextual_contract_name" type="String"
+				description="" />
+			<Column name="page_quality_contract_name" type="String"
+				description="" />
+			<Column name="brand_safety_contract_name" type="String"
+				description="" />
+			<Column name="contextual_provider_id" type="Integer"
+				description="" />
+			<Column name="page_quality_provider_id" type="Integer"
+				description="" />
+			<Column name="brand_safety_provider_id" type="Integer"
+				description="" />
+			<Column name="contextual_provider_name" type="String"
+				description="" />
+			<Column name="page_quality_provider_name" type="String"
+				description="" />
+			<Column name="brand_safety_provider_name" type="String"
+				description="" />
+		</Table>
+		<Table name="dmp.impressions/clicks/actions/engagement_events Tables"
+			description="" visible="false">
+			<Column name="action" type="Integer"
+				description="1 for contract action, 0 otherwise" />
+			<Column name="action_ts" type="Integer" description="in seconds" />
+			<Column name="ad_experiment_bucket_id" type="Integer"
+				description="" />
+			<Column name="advertiser_id" type="Integer" description="DMP advertiser id" />
+			<Column name="advertiser_name" type="String" description="DMP advertiser name" />
+			<Column name="bid_price" type="Float" description="" />
+			<Column name="bid_type" type="Integer" description="" />
+			<Column name="browser_type" type="Integer" description="" />
+			<Column name="category" type="String" description="" />
+			<Column name="category_id" type="Integer" description="" />
+			<Column name="city" type="String" description="" />
+			<Column name="click" type="Integer" description="1 for click, 0 otherwise" />
+			<Column name="cogs" type="Float" description="Cost of good sold" />
+			<Column name="contract_id" type="Integer"
+				description="contract that contributes to the impression" />
+			<Column name="contract_name" type="String"
+				description="contract that contributes to the impression" />
+			<Column name="cost" type="Float" description="a.k.a advertiser invoice" />
+			<Column name="country" type="String" description="" />
+			<Column name="creation_ts" type="Integer"
+				description="profile creation time in epoch time seconds" />
+			<Column name="cta" type="Integer"
+				description="1 for click through action, 0 otherwise" />
+			<Column name="data_cost" type="Float" description="Cost by using DMP data" />
+			<Column name="data_provider_id" type="Integer"
+				description="provider that contributes to the impression" />
+			<Column name="data_provider_name" type="String"
+				description="provider that contributes to the impression" />
+			<Column name="dma" type="String" description="" />
+			<Column name="dsp_fee" type="Float" description="" />
+			<Column name="engagement_event_id" type="Integer" description="" />
+			<Column name="engagement_event_ts" type="Integer" description="" />
+			<Column name="external_data_cost" type="Float" description="" />
+			<Column name="impression" type="Integer" description="1 for impression, 0 otherwise" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="keyword" type="String" description="" />
+			<Column name="last_modified_ts" type="Integer"
+				description="most recent time the profile is updated, epoch time in seconds" />
+			<Column name="margin" type="Float" description="Partner margin" />
+			<Column name="media_channel_id" type="Integer" description="" />
+			<Column name="media_channel_name" type="String" description="" />
+			<Column name="media_provider_id" type="Integer" description="" />
+			<Column name="media_provider_name" type="String" description="" />
+			<Column name="mp_ad_format_id" type="Integer" description="" />
+			<Column name="mp_advertiser_id" type="Integer"
+				description="meta data used at Media provider side" />
+			<Column name="mp_advertiser_name" type="String" description="" />
+			<Column name="mp_creative_id" type="Integer" description="" />
+			<Column name="mp_creative_name" type="String" description="" />
+			<Column name="mp_insertion_order_id" type="Integer"
+				description="" />
+			<Column name="mp_insertion_order_name" type="String"
+				description="" />
+			<Column name="mp_inventory_source_id" type="Integer"
+				description="" />
+			<Column name="mp_inventory_source_name" type="String"
+				description="" />
+			<Column name="mp_io_current_budget" type="Float" description="" />
+			<Column name="mp_io_end_date" type="String" description="" />
+			<Column name="mp_io_goal_amount" type="Float" description="" />
+			<Column name="mp_io_goal_type" type="Integer" description="" />
+			<Column name="mp_io_start_date" type="String" description="" />
+			<Column name="mp_line_item_id" type="Integer" description="" />
+			<Column name="mp_line_item_name" type="String" description="" />
+			<Column name="mp_market_id" type="Integer" description="" />
+			<Column name="mp_package_current_budget" type="Float"
+				description="" />
+			<Column name="mp_package_end_date" type="String" description="" />
+			<Column name="mp_package_goal_amount" type="Float"
+				description="" />
+			<Column name="mp_package_goal_type" type="Integer"
+				description="" />
+			<Column name="mp_package_id" type="Integer" description="" />
+			<Column name="mp_package_name" type="String" description="" />
+			<Column name="mp_package_start_date" type="String"
+				description="" />
+			<Column name="mp_tpt_category_id" type="Integer" description="" />
+			<Column name="mp_tpt_category_name" type="String" description="" />
+			<Column name="net_media_cost" type="Float" description="" />
+			<Column name="order_number" type="String" description="a.k.a cid" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="rate_type" type="Integer" description="contract type" />
+			<Column name="recipe_id" type="Integer" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="rule_num" type="Integer"
+				description="segment rule that qualified for the impression" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="segment_id" type="Integer" description="targeted segments" />
+			<Column name="segment_name" type="String" description="" />
+			<Column name="shopping_cart_value" type="Float" description="a.k.a bprice" />
+			<Column name="subdomain" type="String" description="" />
+			<Column name="tap_action" type="Integer"
+				description="action attribution at DMP side" />
+			<Column name="tap_cta" type="Integer" description="" />
+			<Column name="tap_vta" type="Integer" description="" />
+			<Column name="tld" type="String" description="" />
+			<Column name="ts" type="Integer" description="impression time in seconds" />
+			<Column name="user_id" type="Integer" description="" />
+			<Column name="vta" type="Integer"
+				description="1 for view through action, 0 otherwise" />
+		</Table>
+		<Table name="dmp.data" description="" visible="false">
+			<Column name="advertiser_id" type="Integer"
+				description="DMP advertiser id (-1 for user data)" />
+			<Column name="category" type="String" description="" />
+			<Column name="category_id" type="Integer" description="" />
+			<Column name="category_name" type="String" description="" />
+			<Column name="cid" type="String" description="cid" />
+			<Column name="city" type="String" description="" />
+			<Column name="contract_id" type="Integer" description="" />
+			<Column name="contract_name" type="String" description="" />
+			<Column name="country" type="String" description="" />
+			<Column name="creation_ts" type="Integer" description="" />
+			<Column name="data_cost" type="Float" description="" />
+			<Column name="data_provider_id" type="Integer" description="" />
+			<Column name="data_provider_name" type="String" description="" />
+			<Column name="dma" type="String" description="" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="last_modified_ts" type="Integer" description="" />
+			<Column name="keyword" type="String" description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="rate_type" type="Integer" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="shopping_cart_value" type="Float" description="bprice" />
+			<Column name="ts" type="Integer" description="" />
+			<Column name="user_id" type="Integer" description="" />
+		</Table>
+		<Table name="dmp.container_tags" description="" visible="false">
+			<Column name="city" type="String" description="" />
+			<Column name="country" type="String" description="" />
+			<Column name="creation_ts" type="Integer" description="" />
+			<Column name="dma" type="String" description="" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="last_modified_ts" type="Integer" description="" />
+			<Column name="media_channel_id" type="Integer" description="" />
+			<Column name="media_channel_name" type="String" description="" />
+			<Column name="media_provider_id" type="Integer" description="" />
+			<Column name="media_provider_name" type="String" description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="segment_change_count" type="Integer"
+				description="" />
+			<Column name="ts" type="Integer" description="" />
+			<Column name="type" type="Integer"
+				description="1 for membership (offline) 0 for real time" />
+			<Column name="user_id" type="Integer" description="" />
+		</Table>
+		<Table name="dmp.provider_user_ids" description="" visible="false">
+			<Column name="city" type="String" description="" />
+			<Column name="country" type="String" description="" />
+			<Column name="creation_ts	" type="Integer	" description="" />
+			<Column name="dma" type="String" description="" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="last_modified_ts	" type="Integer	" description="" />
+			<Column name="match_partner_id" type="Integer" description="" />
+			<Column name="match_partner_user_id" type="String"
+				description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="provider_id" type="Integer" description="" />
+			<Column name="provider_type" type="Integer" description="" />
+			<Column name="provider_user_id" type="String" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="ts" type="Integer" description="" />
+			<Column name="user_id" type="Integer" description="" />
+		</Table>
+		<Table name="profiles.impressions/clicks/actions/engagement_events"
+			description="" visible="true">
+			<Column name="action" type="Integer"
+				description="1 for contract action, 0 otherwise	" />
+			<Column name="action_ts" type="Integer" description="action time in seconds	" />
+			<Column name="ad_format_id" type="Integer" description="" />
+			<Column name="ad_id" type="Integer" description="" />
+			<Column name="advertiser_id" type="Integer" description="" />
+			<Column name="advertiser_name" type="String" description="" />
+			<Column name="age_bucket" type="Integer" description="" />
+			<Column name="channel_id" type="Integer" description="" />
+			<Column name="city" type="String" description="" />
+			<Column name="click" type="Integer" description="" />
+			<Column name="cost" type="Float" description="" />
+			<Column name="country" type="String" description="" />
+			<Column name="creative_id" type="Integer" description="" />
+			<Column name="creative_name" type="String" description="" />
+			<Column name="cta" type="Integer"
+				description="1 for click through action, 0 otherwise	" />
+			<Column name="dma" type="String" description="" />
+			<Column name="economic_tier" type="Integer" description="" />
+			<Column name="engagement_event_id" type="Integer" description="" />
+			<Column name="engagement_event_ts" type="Integer" description="" />
+			<Column name="gender" type="Integer" description="" />
+			<Column name="home_market_id" type="Integer" description="advertiser market id	" />
+			<Column name="impression" type="Integer"
+				description="1 for impression, 0 otherwise	" />
+			<Column name="income_tier" type="Integer" description="" />
+			<Column name="insertion_order_id" type="Integer" description="" />
+			<Column name="insertion_order_name" type="String" description="" />
+			<Column name="inv_cost" type="Float" description="net media cost	" />
+			<Column name="inventory_source_id" type="Integer" description="" />
+			<Column name="inventory_source_name" type="String"
+				description="" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="line_item_id" type="Integer" description="" />
+			<Column name="line_item_name" type="String" description="" />
+			<Column name="max_age" type="Integer" description="" />
+			<Column name="max_income" type="Integer" description="" />
+			<Column name="min_age" type="Integer" description="" />
+			<Column name="min_income" type="Integer" description="" />
+			<Column name="package_id" type="Integer" description="" />
+			<Column name="package_name" type="String" description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="publisher_id" type="Integer" description="" />
+			<Column name="publisher_name" type="String" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="spend_tier" type="Integer" description="" />
+			<Column name="subdomain" type="String" description="" />
+			<Column name="tat_category_id" type="Integer" description="" />
+			<Column name="tld" type="String" description="" />
+			<Column name="ts" type="Integer" description="impression time in seconds	" />
+			<Column name="user_id" type="Integer" description="" />
+			<Column name="vta" type="Integer"
+				description="1 for view through action, 0 otherwise	" />
+		</Table>
+		<Table name="profiles.beacons/dmp.beacons" description=""
+			visible="true">
+			<Column name="advertiser_id" type="Integer" />
+			<Column name="advertiser_name" type="String" />
+			<Column name="age_bucket" type="Integer" />
+			<Column name="beacon_id" type="Integer" />
+			<Column name="beacon_name" type="String" />
+			<Column name="beacon_type" type="Integer" />
+			<Column name="city" type="String" />
+			<Column name="country" type="String" />
+			<Column name="dma" type="String" />
+			<Column name="economic_tier" type="Integer" />
+			<Column name="gender" type="Integer" />
+			<Column name="home_market_id" type="Integer" />
+			<Column name="income_tier" type="Integer" />
+			<Column name="ip" type="String" />
+			<Column name="ip_address" type="String" />
+			<Column name="max_age" type="Integer" />
+			<Column name="max_income" type="Integer" />
+			<Column name="min_age" type="Integer" />
+			<Column name="min_income" type="Integer" />
+			<Column name="postal_code" type="String" />
+			<Column name="region" type="String" />
+			<Column name="screen_resolution" type="Integer" />
+			<Column name="spend_tier" type="Integer" />
+			<Column name="tat_category_id" type="Integer" />
+			<Column name="tat_category_level2_id" type="Integer" />
+			<Column name="ts" type="Integer" />
+			<Column name="user_id" type="Integer" />
+		</Table>
+		<Table name="profiles.partners" description="" visible="true">
+			<Column name="advertiser_user_data" type="String" description="partner user id	" />
+			<Column name="age_bucket" type="Integer" description="" />
+			<Column name="category_id" type="Integer" description="" />
+			<Column name="category_name" type="String" description="" />
+			<Column name="city" type="String" description="" />
+			<Column name="cost" type="Float" description="" />
+			<Column name="country" type="String" description="" />
+			<Column name="dma" type="String" description="" />
+			<Column name="economic_tier" type="Integer" description="" />
+			<Column name="event_id" type="Integer" description="" />
+			<Column name="gender" type="Integer" description="" />
+			<Column name="income_tier" type="Integer" description="" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="max_age" type="Integer" description="" />
+			<Column name="max_income" type="Integer" description="" />
+			<Column name="min_age" type="Integer" description="" />
+			<Column name="min_income" type="Integer" description="" />
+			<Column name="partner_id" type="Integer" description="" />
+			<Column name="partner_name" type="String" description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="spend_tier" type="Integer" description="" />
+			<Column name="ts" type="Integer" description="event timestamp in seconds	" />
+			<Column name="user_id" type="Integer" description="" />
+		</Table>
+		<Table name="profiles.demographics" description="" visible="true">
+			<Column name="age_bucket" type="Integer" description="" />
+			<Column name="city" type="String" description="" />
+			<Column name="country" type="String" description="" />
+			<Column name="dma" type="String" description="" />
+			<Column name="economic_tier" type="Integer" description="" />
+			<Column name="gender" type="Integer" description="" />
+			<Column name="income_tier" type="Integer" description="" />
+			<Column name="ip" type="String" description="" />
+			<Column name="ip_address" type="String" description="" />
+			<Column name="max_age" type="Integer" description="" />
+			<Column name="max_income" type="Integer" description="" />
+			<Column name="min_age" type="Integer" description="" />
+			<Column name="min_income" type="Integer" description="" />
+			<Column name="partner_country" type="String" description="" />
+			<Column name="partner_demo_entry" type="String" description="" />
+			<Column name="partner_economic_tier" type="Integer"
+				description="" />
+			<Column name="partner_gender" type="Integer" description="" />
+			<Column name="partner_id" type="Integer" description="" />
+			<Column name="partner_income_tier" type="Integer" description="" />
+			<Column name="partner_max_age" type="Integer" description="" />
+			<Column name="partner_max_income" type="Integer" description="" />
+			<Column name="partner_min_age" type="Integer" description="" />
+			<Column name="partner_min_income" type="Integer" description="" />
+			<Column name="partner_name" type="String" description="" />
+			<Column name="partner_spend_tier" type="Integer" description="" />
+			<Column name="partner_state" type="String" description="" />
+			<Column name="partner_user_id" type="Integer" description="" />
+			<Column name="postal_code" type="String" description="" />
+			<Column name="region" type="String" description="" />
+			<Column name="screen_resolution" type="Integer" description="" />
+			<Column name="spend_tier" type="Integer" description="" />
+			<Column name="ts" type="Integer" description="" />
+			<Column name="user_id" type="Integer" description="" />
+		</Table>
+		<Table name="profiles.keywords" description="" visible="true">
+			<Column name="keyword" description="" />
+			<Column name="partner_id" description="" />
+			<Column name="partner_name" description="" />
+		</Table>
+		<Table name="profiles.behaviors" description="" visible="true">
+			<Column name="behavior_id" description="" />
+		</Table>
+	</CheetahICA>
+	<Examples name="Examples" description="" visible="true">
+		<Example name="ICA Summary(AUP)" description="" visible="true">
+			select
+			to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action)
+			from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+			dates [2012_04_10, 2012_04_30]
+			order by to_date(ts)
+		</Example>
+		<Example name="ICA Summary(Relational Table)" description=""
+			visible="true">
+			select
+			impression_date, sum(impression), sum(click), sum(action)
+			from impressions, clicks, actions
+			dates [2012_04_10, 2012_04_30]
+			where advertiser_id > 0
+			order by impression_date
+		</Example>
+		<Example name="dmp.data" description="A query on dmp.data table"
+			visible="true">
+			select
+			to_date(ts), data_provider_id, count(distinct user_id)
+			from dmp.data
+			dates 2012_03_10
+			where market_id in (-1, 1, 100)
+			order by data_provider_id
+		</Example>
+		<Example name="dmp.segments"
+			description="A query on dmp.segments table;
+		note that 1% of AUP is evaluated if it is run on Turn's AUP"
+			visible="true">select
+			select segment_id, count(*)
+			from dmp.segments
+			dates 2012_04_10
+		</Example>
+		<Example name="dmp.data.category*" description="Access category information"
+			visible="true">
+			select
+			data_provider_name, contract_name, category_fullpath_name, category_name, category_id,
+			count(distinct user_id) cat_UU
+			From dmp.data
+			Dates [2012_04_01, 2012_04_25]
+			where data_provider_id in (18130977, 3310169, 19192919)
+			order by category_name
+		</Example>
+		<Example name="list_has" description="how to use list_has"
+			visible="true">
+			select
+			data_provider_name, contract_name, category_name, count(distinct user_id) UU,
+			sum(distinct case when
+			list_has(dmp.impressions.mp_insertion_order_id, 910928843) then 1
+			else 0 end) impression_UU,
+			sum(distinct case when list_has(dmp.actions.mp_insertion_order_id, 910928843,
+			dmp.actions.action, 1) then 1 else 0 end) action_UU,
+			sum(distinct case when list_has(dmp.data.category_id, category_id) then 1 else 0
+			end)
+			from dmp.data
+			dates [2011_12_01,2012_03_11]
+			where data_provider_name like '%always%'
+			order by category_name
+		</Example>
+		<Example name="list_count/list_sum" description="how to use list_count/list_sum"
+			visible="true">
+			select
+			data_provider_name, contract_name, category_name, count(distinct user_id) UU,
+			sum(distinct list_count(dmp.actions.mp_insertion_order_id, 910928843,
+			dmp.actions.action,1,dmp.actions.ts,0,9999999999)) actions,
+			sum(distinct list_count(dmp.impressions.mp_insertion_order_id,
+			910928843,dmp.impressions.ts,0,9999999999)) impressions,
+			castlong(sum(distinct
+			list_sum(dmp.impressions.mp_insertion_order_id,910928843,dmp.impressions.cost)))
+			cost
+			from dmp.data
+			dates [2011_12_01,2012_03_11]
+			where data_provider_name like '%always%'
+			order by category_name
+		</Example>
+		<Example name="list_max/list_min" description="how to use list_max/list_min"
+			visible="true">
+			select
+			CASTLONG((list_max(dmp.data.contract_id, 18231125, 18234522, dmp.data.ts) - list_min(dmp.data.contract_id,
+			18192520, dmp.data.ts))/86400 / list_count(dmp.data.contract_id,
+			18231125, dmp.data.ts, 0, 9999999999)), count(distinct user_id)
+			From dmp.data
+			Dates [2012_01_05, 2012_01_10]
+			Where list_count(dmp.data.contract_id, 18231125, dmp.data.ts, 0,
+			9999999999) &gt; 1
+		</Example>
+		<Example name="list_sum_range" description="how to use list_sum_range"
+			visible="true">
+			select
+			data_provider_name, data_provider_id, contract_name, contract_id, category_name,
+			category_id, count(distinct user_id) cat_UU,
+			sum(distinct list_sum_range(aip.actions.mp_insertion_order_id,
+			917334196, aip.actions.action, 1, aip.actions.mp_package_id,
+			917335699, 917335116, aip.actions.ts, to_epoch_time('2012_03_09'),
+			to_epoch_time('2012_03_15')+86399, aip.actions.shopping_cart_value))
+			adv_rev
+			from aip.data
+			dates [2012_02_10, 2012_03_15]
+			where not data_provider_name like '%advertiser%' and not
+			data_provider_name like '%hp%'
+		</Example>
+		<Example name="data query 1"
+			description="Count of distinct users, and fires, on a pixel by day"
+			visible="true">
+			select to_date(ts), count(distinct user_id), count(*)
+			from profiles.beacons
+			dates [2012_01_10, 2012_01_11]
+			where beacon_id = ??
+		</Example>
+		<Example name="User Profile Analysis"
+			description="Find out the ICA distribution of users in terms of their gender, geo"
+			visible="true">
+			select to_date_2(impression_datetime), case when gender = -1 then 'Unknown'
+			when gender = 1 then 'Male' else 'Female' end gender,
+			target_page_postal_code zipcode, sum(impression) imps,sum(click)
+			clicks, sum(action) actions
+			from impressions, clicks, actions
+			DATES [2012_01_01,2012_01_31]
+		</Example>
+		<Example name="User Counting" description="Find out the number of users"
+			visible="true">
+			select count(distinct user_id)
+			from dmp
+			dates 2012_05_29
+		</Example>
+	</Examples>
+</Metadata>

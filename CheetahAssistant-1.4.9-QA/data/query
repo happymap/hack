@@ -1,0 +1,741 @@
+-- Time Stamp : 1313433085831
+select mp_market_id, sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06, 2011_08_14]
+order by mp_market_id
+-- Time Stamp : 1313436317070
+select to_date(ts), mp_market_id, sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06, 2011_08_14]
+order by mp_market_id
+-- Time Stamp : 1313436535514
+select to_date(ts), mp_market_id, sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06, 2011_08_14]
+where mp_market_id = 94
+order by mp_market_id
+
+-- Time Stamp : 2011/Aug/16 02:09:36 PDT
+select to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_12,2011_08_12]
+where mp_market_id = 94
+order by to_date(ts)
+
+-- Time Stamp : 2011/Aug/16 02:18:28 PDT
+select to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06,2011_08_12]
+where mp_market_id = 94
+order by to_date(ts)
+
+-- Time Stamp : 2011/Aug/16 02:33:00 PDT
+select to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06,2011_08_12]
+where mp_market_id = 94
+order by to_date(ts)
+
+-- Time Stamp : 2011/Aug/16 02:53:35 PDT
+select to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06,2011_08_12]
+where mp_market_id = 94
+order by to_date(ts)
+
+-- Time Stamp : 2011/Aug/16 03:11:44 PDT
+select to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06,2011_08_12]
+where mp_market_id = 94
+order by to_date(ts)
+
+-- Time Stamp : 2011/Aug/16 03:27:03 PDT
+select to_date(ts), sum(impression), sum(click), sum(action), sum(tap_action), count(distinct user_id) UU
+from dmp.impressions, dmp.clicks, dmp.actions, dmp.tap_actions
+dates [2011_08_06,2011_08_12]
+where mp_market_id = 94
+order by to_date(ts)
+
+-- Time - Mar/19-15:41:47
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332196907848/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_14
+order by market_id, data_provider_id
+
+-- Time - Mar/19-15:48:33
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332197313967/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_15
+order by market_id, data_provider_id
+
+-- Time - Mar/19-15:57:15
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332197835703/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_15
+where market_id in (-1, 100)
+order by market_id, data_provider_id
+
+-- Time - Mar/19-16:01:55
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1467950192_1332198115042
+
+-- Time - Mar/19-16:03:43
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1467950192_1332198223816.txt
+
+-- Time - Mar/19-16:04:27
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1332198267697
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13)
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Mar/19-16:04:56
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1332198296966
+
+-- Time - Mar/19-16:12:13
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1332198733312
+
+-- Time - Mar/19-16:14:00
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332198840985/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_16
+order by market_id, data_provider_id
+
+-- Time - Mar/19-16:19:52
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332199192773/Test_77432832.txt
+
+-- Time - Mar/19-16:49:13
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332200953082/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    contract_id,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_16
+order by market_id, data_provider_id
+
+-- Time - Mar/21-10:01:12
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332349272509/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    contract_id,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_20
+where market_id in (-1, 100)
+order by market_id, data_provider_id
+
+-- Time - Mar/21-10:15:44
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332350144499/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    contract_id,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_20
+order by market_id, data_provider_id
+
+-- Time - Mar/21-10:31:25
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1332351085837
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13)
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Mar/21-10:34:27
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1332351267198
+
+-- Time - Mar/21-10:41:16
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332351676898/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_20
+where market_id in (-1, 100)
+order by market_id, data_provider_id
+
+-- Time - Mar/21-10:50:08
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332352208478/Test_77432832.txt
+
+-- Time - Mar/21-11:45:21
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332355521630/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    user_id,
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_20
+where market_id in (-1, 100) and contract_id = 6716431
+order by market_id, data_provider_id
+
+-- Time - Mar/22-11:15:21
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332440121672/Test_77432832.txt
+SELECT sum(impression), sum(click), sum(action), sum(ad_call), sum(cost), sum(inv_cost) FROM impressions, clicks, transactions DATES 2012_03_21
+
+-- Time - Mar/22-11:43:46
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332441826804/Test_77432832.txt
+SELECT sum(impression), sum(click), sum(action), sum(ad_call), sum(cost), sum(inv_cost) FROM impressions, clicks, transactions DATES 2012_03_21
+where advertiser_id > 0
+
+-- Time - Mar/22-11:52:01
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332442321443/Test_77432832.txt
+
+-- Time - Mar/22-11:55:51
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332442551579/Test_77432832.txt
+SELECT sum(impression), sum(click), sum(action), sum(ad_call), sum(cost), sum(inv_cost) FROM impressions, clicks, transactions DATES 2012_03_21
+where advertiser_id > 0 and market_id = 100
+
+-- Time - Mar/22-11:58:05
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332442685137/Test_77432832.txt
+SELECT impression_date, sum(impression), sum(click), sum(action), sum(ad_call), sum(cost), sum(inv_cost) FROM impressions, clicks, transactions DATES [2012_03_21, 2012_03_22]
+where advertiser_id > 0 and market_id = 100
+
+-- Time - Mar/22-12:03:06
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332442986646/Test_77432832.txt
+SELECT impression_date, sum(impression), sum(click), sum(action), sum(ad_call), sum(cost), sum(inv_cost) FROM impressions, clicks, transactions DATES [2012_03_21, 2012_03_22]
+where market_id = 100
+
+-- Time - Mar/22-17:23:17
+-- Market - Turn
+-- Cluster - Testing Cluster @ app141
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332462198038/Test_77432832.txt
+Select user_id,  category_id, count(*) 
+From dmp.data
+Dates [2012_03_01, 2012_03_20] 
+Where list_has(dmp.data.category, '%001')
+
+-- Time - Mar/22-17:29:24
+-- Market - Turn
+-- Cluster - Testing Cluster @ app141
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332462564784/Test_77432832.txt
+
+-- Time - Mar/22-17:36:00
+-- Market - Turn
+-- Cluster - Testing Cluster @ app141
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332462960897/Test_77432832.txt
+
+-- Time - Mar/26-14:49:48
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1716617900_1332798588929
+select
+    to_date(event_ts),
+    market_id,
+    event_type_id,
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+order by to_date(event_ts), market_id, event_type_id
+
+-- Time - Mar/27-09:38:07
+-- Market - Experian
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Experian/yqi/tmp1332866287494/Test_77432832.txt
+select user_id, contract_name, category_name, count(*), list_max2(dmp.provider_user_ids.provider_id, 3157568, dmp.provider_user_ids.provider_user_id) EID from aiq.data dates[2012_02_02,2012_03_12] where contract_id = 18642163 
+
+-- Time - Mar/27-09:47:34
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1332866854587/Test_77432832.txt
+
+-- Time - Mar/27-10:12:08
+-- Market - Experian
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Experian/yqi/tmp1332868328953/Test_77432832.txt
+select user_id, contract_name, category_name, count(*), list_min2(dmp.provider_user_ids.provider_id, 3157568, dmp.provider_user_ids.provider_user_id) EID from aiq.data dates[2012_02_02,2012_03_12] where contract_id = 18642163 
+
+-- Time - Mar/30-09:34:34
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333125274933/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_29
+where market_id in (-1, 100)
+order by market_id, data_provider_id
+
+-- Time - Mar/30-09:49:48
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333126188896/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_29
+order by market_id, data_provider_id
+
+-- Time - Mar/30-11:38:16
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333132697008/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    contract_id, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_29
+where market_id == -1
+order by market_id, data_provider_id
+
+-- Time - Mar/30-11:38:36
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333132716171/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    contract_id, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_29
+where market_id = -1
+order by market_id, data_provider_id
+
+-- Time - Mar/31-13:05:26
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333224326766/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_30
+where market_id in (-1, 100)
+order by market_id, data_provider_id
+
+-- Time - Mar/31-13:16:44
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333225004279/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_30
+order by market_id, data_provider_id
+
+-- Time - Apr/01-01:05:34
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333267534713/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_03_30
+where market_id = 3
+order by market_id, data_provider_id
+
+-- Time - Apr/01-15:10:06
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333318206874/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates [2012_03_30, 2012_03_31]
+where market_id in (-1, 100)
+order by market_id, data_provider_id
+
+-- Time - Apr/01-15:27:29
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333319249835/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates [2012_03_30, 2012_03_31]
+where market_id in (-1, 100)
+order by to_date(ts), market_id, data_provider_id
+
+-- Time - Apr/01-15:57:00
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333321020893/Test_77432832.txt
+
+-- Time - Apr/02-10:07:46
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333386466307/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates [2012_03_30, 2012_04_01]
+where market_id in (-1, 100)
+order by to_date(ts), market_id, data_provider_id
+
+-- Time - Apr/02-10:24:21
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333387461825/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates [2012_03_30, 2012_04_01]
+--where market_id in (-1, 100)
+order by to_date(ts), market_id, data_provider_id
+
+-- Time - Apr/02-10:46:05
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1333388765269
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13)
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Apr/02-10:54:10
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_608038362_1333389250855
+
+-- Time - Apr/02-10:55:27
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1965582856_1333389327596
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and market_id in (-1, 100)
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Apr/02-10:57:42
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1736817764_1333389462505
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and (market_id = -1 or market_id = 100)
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Apr/02-11:33:57
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1736817764_1333391637972
+
+-- Time - Apr/02-11:53:54
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_342400642_1333392834957
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    contract_id, 
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and market_id = -1 and event_data_provider_id = 3612052
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Apr/02-11:54:13
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1795140139_1333392853815
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    data_contract_id, 
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and market_id = -1 and event_data_provider_id = 3612052
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Apr/02-11:57:54
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_2023498205_1333393074237
+select
+    to_date(event_ts),
+    market_id,
+    event_data_provider_id,
+    event_contract_id, 
+    count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and market_id = -1 and event_data_provider_id = 3612052
+order by to_date(event_ts), market_id, event_data_provider_id
+
+-- Time - Apr/02-12:05:58
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_2023498205_1333393558074
+
+-- Time - Apr/03-11:21:19
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333477279482/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_04_02
+order by to_date(ts), market_id, data_provider_id
+
+-- Time - Apr/03-11:26:24
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333477584446/Test_77432832.txt
+select
+    to_date(ts),
+    market_id,
+    data_provider_id,
+    data_provider_name, 
+    count(distinct user_id),
+    count(*)
+from dmp.data
+dates 2012_04_02
+where market_id in (-1, 100)
+order by to_date(ts), market_id, data_provider_id
+
+-- Time - Apr/04-14:08:24
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_57960286_1333573704777.txt
+select count(distinct user_id)
+from dmp.impressions
+dates [2011_04_03, 2012_04_03]
+
+-- Time - Apr/04-14:13:08
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1513692094_1333573988550.txt
+select count(distinct user_id)
+from dmp
+dates [2011_04_03, 2012_04_03]
+
+-- Time - Apr/05-10:51:10
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333648270740/Test_77432832.txt
+select impression_date, home_market_id, sum(impression), sum(click), sum(action)
+from impressions, clicks, actions 
+dates [2012_04_03, 2012_04_04]
+order by impression_date
+
+
+-- Time - Apr/05-10:55:47
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/external-users/Turn/yqi/tmp1333648547702/Test_77432832.txt
+
+-- Time - Apr/05-11:03:08
+-- Market - Turn
+-- Cluster - Private Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_620301622_1333648988684
+Select market_id, event_data_provider_id, count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13)
+order by market_id, event_data_provider_id
+
+
+-- Time - Apr/05-11:09:52
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1100429162_1333649392699
+Select market_id, event_data_provider_id, count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and market_id in (-1, 100)
+order by market_id, event_data_provider_id
+
+
+-- Time - Apr/05-11:13:51
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_1323054176_1333649631465
+Select market_id, event_data_provider_id, count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and (market_id in = -1 or market_id in = 100)
+order by market_id, event_data_provider_id
+
+
+-- Time - Apr/05-11:14:30
+-- Market - Turn
+-- Cluster - Production Cluster
+-- Output file : /home/apps/cheetah-users/yqi/tmp/output_449329140_1333649670721
+Select market_id, event_data_provider_id, count(*)
+from events.dmp.1
+dates 2012_03_10
+where event_type_id in (13) and (market_id = -1 or market_id = 100)
+order by market_id, event_data_provider_id
+

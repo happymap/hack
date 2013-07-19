@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<hdfs>
+		<cluster name="Datamine (Turn)" url="disk107.sjc2.turn.com">
+			<account>apps</account>
+			<password></password>
+			<user>QA.User</user>
+			<java_xmx>1200M</java_xmx>
+		</cluster>
+		<cluster name="Testing Cluster @ app141" url="app141.sjc2.turn.com">
+			<account>apps</account>
+			<password></password>
+			<user>QA.User</user>
+			<java_xmx>1200M</java_xmx>
+		</cluster>
+		<cluster name="Hadrian (ATT)" url="app149.sjc3.turn.com">
+			<account>apps</account>
+			<password></password>
+			<user>QA.User</user>
+			<java_xmx>1200M</java_xmx>
+		</cluster>
+		<cluster name="QA Staging" url="qajvm001">
+			<account>apps</account>
+			<password>apps</password>
+			<user>QA.User</user>
+			<java_xmx>1200M</java_xmx>
+		</cluster>
+	</hdfs>
+	<markets>
+		<market name="Turn" id="1" description=""/>
+		<market name="OMG" id="4" description=""/>
+		<market name="Experian" id="73" description=""/>
+		<market name="Experian" id="44" description=""/>
+		<market name="Cadreon" id="3" description=""/>
+		<market name="Akamai" id="94" description=""/>
+		<market name="ATT" id="100" description=""/>
+		<market name="OMG_NL" id="31" description=""/>
+		<market name="OMG_NL_Zilveren" id="153" description=""/>
+		<market name="Traveller" id="168" description=""/>
+		<market name="Microsoft" id="255" description=""/>
+	</markets>
+	<operations>
+		<operation name="UNIVERSAL_CQL" id="" description="">
+			<class>com.turn.platform.cheetah.universal.universal_queryprocessing.UniversalQueryDriver</class>
+		</operation>
+		<operation name="CQL" id="" description="">
+			<class>com.turn.platform.cheetah.queryprocessing.QueryDriver</class>
+		</operation>
+		<operation name="AdHoc_UCQL" id="" description="">
+			<class>com.turn.platform.cheetah.universal.universal_queryprocessing.adhoc_profile.AdhocUniversalQueryDriver</class>
+		</operation>
+		<operation name="AdHoc_CQL" id="" description="">
+			<class>com.turn.platform.cheetah.queryprocessing.AdhocQueryDriver</class>
+		</operation>
+		<operation name="CQL_Analytics" id="" description="">
+			<class>com.turn.qyan.ecql.execuation.NewCqlQueryExecution</class>
+		</operation>
+		<operation name="Adhoc_CQL_Analytics" id="" description="">
+			<class>com.turn.qyan.ecql.execuation.NewCqlQueryExecution</class>
+		</operation>
+	</operations>
+</configuration>

@@ -1,6 +1,6 @@
 from bottle import route, run, template, get, request, hook, response, static_file
 
-import pymongo
+import pymongo, subprocess
 
 count = 0
 #mongodb connection
@@ -25,10 +25,28 @@ def login():
 #show the query page
 @route('/wizard')
 def wizard():
-	tables = ['table1', 'table2'];
+
+    #check cookie
+    if request.get_cookie('cheetah') == None:
+        #command = 'ls'
+        command = 'java -jar /Users/yying/hack/queryauthentication/target/query-operations-1.0-SNAPSHOT.jar'
+        process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+        output = process.communicate()
+        retcode = process.poll()
+        if retcode:
+            raise subprocess.CalledProcessError(retcode, command, output=output[0])
+        token = output[0].split("access token:", 1)[1]
+        response.set_cookie('cheetah', token)
+
+    else:
+        print 'token gotten'
+
+	tables = ['data', 'impressions', 'clicks', 'actions'];
 	columns = {
-		'table1': ['column11', 'column12', 'column13', 'column14', 'column15', 'column16'],
-		'table2': ['column21', 'column22', 'column23', 'column24', 'column25', 'column26']
+		'data': ['advertiser_id', 'category', 'category_id', 'category_name', 'cid', 'contract_id'],
+		'impressions': ['impression', 'cost', 'advertiser_id', 'impression_date', 'impression_hour', 'package_id', 'impression_id'],
+        'clicks': ['data_cost', 'market_pay_data_cost', 'turn_pay_data_cost'],
+        'actions': ['action', 'cta', 'order_number', 'vta']
 	};
 
 	return template("query", tables=tables, columns=columns);
@@ -42,12 +60,26 @@ def query():
     queryStr = request.query.get('queryStr')
 
     print username + str(marketId) + queryStr
+
+    #run query task
+    # command = 'java -jar "/Users/yying/hack/queryquery/target/query-query-1.0-SNAPSHOT.jar" "dcexqp3he9a6avdhgbeuwmyw" "select * from sth"'
+    # process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, universal_newlines=True)
+    # output = process.communicate()
+    # retcode = process.poll()
+    # if retcode:
+    #     raise subprocess.CalledProcessError(retcode, command, output=output[0])
+    # queryId = output[0]
+    # print "queryId: " + queryId
+
+    p = subprocess.Popen(['java', '-jar', '/Users/yying/hack/queryquery/target/query-query-1.0-SNAPSHOT.jar', request.get_cookie('cheetah'), queryStr], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    queryId, err = p.communicate()
+    print queryId
     
     #db insert example
     connection = pymongo.Connection(connection_string, safe=True)
     db = connection.cheetah
     users = db.users
-    users.insert({'name':username})
+    users.insert({'name':username, 'queryId': queryId, 'queryStr': queryStr, 'result': '', 'finish': False})
 
 @route('/progress')
 def progress():
